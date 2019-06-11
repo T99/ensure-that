@@ -1,0 +1,30 @@
+{
+  "name": "ensure-that",
+  "version": "0.2.0",
+  "description": "Fully recursive runtime typechecking.",
+  "main": "js/main",
+  "types": ".d.ts/main",
+  "scripts": {
+    "build": "rm -rf .d.ts/ js/ && tsc -p ts/tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T99/ensure-that.git"
+  },
+  "keywords": [
+    "runtime",
+    "types",
+    "typed",
+    "typing",
+    "typechecking"
+  ],
+  "author": "Trevor Sears <trevorsears.main@gmail.com> (http://trevorsears.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/T99/ensure-that/issues"
+  },
+  "homepage": "https://github.com/T99/ensure-that#readme",
+  "dependencies": {
+    "iter-over": "^1.0.2"
+  }
+}
