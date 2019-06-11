@@ -1,7 +1,7 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
  *	7:30 PM -- May 26th, 2019.
- *	Project: ensure-that
+ *	Project: typit
  */
 
 import { IOObjectIterator } from "iter-over";

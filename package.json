@@ -1,5 +1,5 @@
 {
-  "name": "ensure-that",
+  "name": "typit",
   "version": "0.2.0",
   "description": "Fully recursive runtime typechecking.",
   "main": "js/main",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/T99/ensure-that.git"
+    "url": "git+https://github.com/T99/typit.git"
   },
   "keywords": [
     "runtime",
@@ -21,9 +21,9 @@
   "author": "Trevor Sears <trevorsears.main@gmail.com> (http://trevorsears.io/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/T99/ensure-that/issues"
+    "url": "https://github.com/T99/typit/issues"
   },
-  "homepage": "https://github.com/T99/ensure-that#readme",
+  "homepage": "https://github.com/T99/typit#readme",
   "dependencies": {
     "iter-over": "^1.0.2"
   }
