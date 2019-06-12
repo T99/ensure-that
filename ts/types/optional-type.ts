@@ -4,16 +4,16 @@
  *	Project: typit
  */
 
-import Type from "./type";
+import { Type } from "./type";
 
 /**
  *
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-class OptionalType<T extends Type<E>, E = any> extends Type<E> {
+export class OptionalType<T extends Type<E>, E = any> extends Type<E> {
 	
 	private optionalType: Type<E>;
 	
@@ -44,5 +44,3 @@ class OptionalType<T extends Type<E>, E = any> extends Type<E> {
 	}
 	
 }
-
-export default OptionalType;

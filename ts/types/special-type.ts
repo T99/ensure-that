@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import Type from "./type";
+import { Type } from "./type";
 
 type Validator = (input: any) => boolean;
 
@@ -12,10 +12,10 @@ type Validator = (input: any) => boolean;
  * An enumeration of certain special types found in JavaScript.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-class SpecialType<E> extends Type<E> {
+export class SpecialType<E> extends Type<E> {
 	
 	public static readonly ANY: SpecialType<any> = new SpecialType(
 		"any",
@@ -69,5 +69,3 @@ class SpecialType<E> extends Type<E> {
 	}
 	
 }
-
-export default SpecialType;

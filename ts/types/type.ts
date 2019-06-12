@@ -8,10 +8,10 @@
  * An interface for classes that check for conformity to a given type at runtime.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-abstract class Type<E = any> {
+export abstract class Type<E = any> {
 
 	public abstract getTypeName(): string;
 	
@@ -32,5 +32,3 @@ abstract class Type<E = any> {
 	}
 
 }
-
-export default Type;

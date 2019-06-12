@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import Type from "./type";
+import { Type } from "./type";
 
 type Validator = (input: any) => boolean;
 
@@ -12,10 +12,10 @@ type Validator = (input: any) => boolean;
  * An enumeration of the standard types found in JavaScript.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-class StandardType<E> extends Type<E> {
+export class StandardType<E> extends Type<E> {
 	
 	public static readonly NUMBER: StandardType<number> = new StandardType(
 		"number",
@@ -76,5 +76,3 @@ class StandardType<E> extends Type<E> {
 	}
 	
 }
-
-export default StandardType;

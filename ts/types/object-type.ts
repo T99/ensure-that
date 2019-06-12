@@ -5,17 +5,17 @@
  */
 
 import { IOObjectIterator } from "iter-over";
-import Type from "./type";
-import ObjectTypeDefinition from "./object-type-definition";
+import { Type } from "./type";
+import { ObjectTypeDefinition } from "./object-type-definition";
 
 /**
  *
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-class ObjectType extends Type {
+export class ObjectType extends Type {
 	
 	private readonly objectName: string;
 	
@@ -175,5 +175,3 @@ class ObjectType extends Type {
 	}
 	
 }
-
-export default ObjectType;

@@ -4,19 +4,17 @@
  *	Project: typit
  */
 
-import Type from "./type";
+import { Type } from "./type";
 
 /**
  *
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-interface ObjectTypeDefinition {
+export interface ObjectTypeDefinition {
 	
 	readonly [property: string]: Type | ObjectTypeDefinition;
 
 }
-
-export default ObjectTypeDefinition;

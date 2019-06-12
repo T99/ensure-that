@@ -4,16 +4,16 @@
  *	Project: typit
  */
 
-import Type from "./type";
+import { Type } from "./type";
 
 /**
  *
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
+ * @version v0.3.0
  * @since v0.1.0
  */
-class ArrayType<E = any> extends Type<E[]> {
+export class ArrayType<E = any> extends Type<E[]> {
 	
 	private arrayType: Type;
 	
@@ -57,5 +57,3 @@ class ArrayType<E = any> extends Type<E[]> {
 	}
 	
 }
-
-export default ArrayType;
