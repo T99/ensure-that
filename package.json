@@ -1,6 +1,6 @@
 {
   "name": "typit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fully recursive runtime typechecking.",
   "main": "js/main",
   "types": ".d.ts/main",
@@ -19,7 +19,7 @@
     "typechecking"
   ],
   "author": "Trevor Sears <trevorsears.main@gmail.com> (http://trevorsears.io/)",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/T99/typit/issues"
   },
