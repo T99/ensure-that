@@ -5,6 +5,7 @@
  */
 
 import { Type } from "./type";
+import { SpecialType } from "./special-type";
 
 /**
  *
@@ -15,9 +16,9 @@ import { Type } from "./type";
  */
 export class ArrayType<E = any> extends Type<E[]> {
 	
-	private arrayType: Type;
+	protected arrayType: Type;
 	
-	public constructor(arrayType: Type<E>, isOptional: boolean = false) {
+	public constructor(arrayType: Type<E> = SpecialType.ANY, isOptional: boolean = false) {
 	
 		super(isOptional);
 		

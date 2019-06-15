@@ -7,8 +7,8 @@ export declare class StandardType<E> extends Type<E> {
     static readonly OPTIONAL_BOOLEAN: StandardType<boolean>;
     static readonly STRING: StandardType<string>;
     static readonly OPTIONAL_STRING: StandardType<string>;
-    private name;
-    private validator;
+    protected name: string;
+    protected validator: Validator;
     protected constructor(name: string, isOptional: boolean, validator: Validator);
     getTypeName(): string;
     checkConformity(input: any): boolean;

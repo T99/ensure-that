@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_1 = require("./type");
+const special_type_1 = require("./special-type");
 class ArrayType extends type_1.Type {
-    constructor(arrayType, isOptional = false) {
+    constructor(arrayType = special_type_1.SpecialType.ANY, isOptional = false) {
         super(isOptional);
         this.arrayType = arrayType;
     }

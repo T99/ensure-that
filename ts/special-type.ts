@@ -65,9 +65,9 @@ export class SpecialType<E> extends Type<E> {
 		(input: any): boolean => input === null
 	);
 	
-	private name: string;
+	protected name: string;
 	
-	private validator: Validator;
+	protected validator: Validator;
 	
 	protected constructor(name: string, isOptional: boolean, validator: Validator) {
 		

@@ -15,9 +15,9 @@ import { Type } from "./type";
  */
 export class EnumType<E = any> extends Type {
 	
-	private typeName: string;
+	protected typeName: string;
 	
-	private acceptableValues: E[];
+	protected acceptableValues: E[];
 	
 	public constructor(acceptableValues: E[], typeName?: string, isOptional: boolean = false) {
 	

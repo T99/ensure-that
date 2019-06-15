@@ -1,7 +1,7 @@
 import { Type } from "./type";
 export declare class EnumType<E = any> extends Type {
-    private typeName;
-    private acceptableValues;
+    protected typeName: string;
+    protected acceptableValues: E[];
     constructor(acceptableValues: E[], typeName?: string, isOptional?: boolean);
     getTypeName(): string;
     checkConformity(input: any): boolean;

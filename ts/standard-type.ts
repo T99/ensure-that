@@ -53,9 +53,9 @@ export class StandardType<E> extends Type<E> {
 		(input: any): boolean => (typeof input === "string")
 	);
 	
-	private name: string;
+	protected name: string;
 	
-	private validator: Validator;
+	protected validator: Validator;
 	
 	protected constructor(name: string, isOptional: boolean, validator: Validator) {
 	
