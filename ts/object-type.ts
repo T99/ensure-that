@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import { IOObjectIterator } from "iter-over";
+import { ObjectIterator } from "iter-over";
 import { Type } from "./type";
 import { ObjectTypeDefinition } from "./object-type-definition";
 
@@ -17,22 +17,24 @@ import { ObjectTypeDefinition } from "./object-type-definition";
  */
 export class ObjectType extends Type {
 	
-	private readonly objectName: string;
+	// TODO [5/27/19 @ 12:54 AM] - Need to take into account that some properties might be optional, nullable, or explicitly undefined.
 	
-	private readonly typeDefinition: ObjectTypeDefinition;
+	protected typeName: string;
 	
-	public constructor(typeDefinition: ObjectTypeDefinition, objectName: string = "") {
+	protected typeDefinition: ObjectTypeDefinition;
 	
-		super();
+	public constructor(typeDefinition: ObjectTypeDefinition, typeName: string = "", isOptional: boolean = false) {
+	
+		super(isOptional);
 		
 		this.typeDefinition = typeDefinition;
-		this.objectName = objectName;
+		this.typeName = typeName;
 	
 	}
 	
 	public static typeDefinitionToReadableJSON(typeDefinition: ObjectTypeDefinition): any {
 		
-		let iterator: IOObjectIterator<Type | ObjectTypeDefinition> = new IOObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
+		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
 		let result: any = {};
 		
 		for (let element of iterator) {
@@ -52,7 +54,7 @@ export class ObjectType extends Type {
 		
 		let structureToStringArray: (struct: ObjectTypeDefinition) => string[] = (struct: ObjectTypeDefinition): string[] => {
 			
-			let iterator: IOObjectIterator<Type | ObjectTypeDefinition> = new IOObjectIterator<Type | ObjectTypeDefinition>(struct);
+			let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(struct);
 			let resultLines: string[] = [];
 			
 			for (let element of iterator) {
@@ -99,17 +101,21 @@ export class ObjectType extends Type {
 	
 	public getTypeName(): string {
 		
-		return "object" + (this.objectName !== "" ? " (" + this.objectName + ")" : "");
+		return "object" + (this.typeName !== "" ? " (" + this.typeName + ")" : "");
 		
 	}
 	
-	// TODO [5/27/19 @ 12:54 AM] - Need to take into account that some properties might be optional, nullable, or explicitly undefined.
+	public getObjectTypeDefinition(): ObjectTypeDefinition {
+		
+		return this.typeDefinition;
+		
+	}
 	
 	public checkConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
 		if (!(typeof input === "object") || (input === null)) return false;
 		
-		let iterator: IOObjectIterator<Type | ObjectTypeDefinition> = new IOObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
+		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
 		
 		for (let element of iterator) {
 			
@@ -143,7 +149,7 @@ export class ObjectType extends Type {
 		if (!this.checkConformity(input, typeDefinition)) return false;
 		
 		let clonedInput: any = JSON.parse(JSON.stringify(input));
-		let iterator: IOObjectIterator<any> = new IOObjectIterator<any>(clonedInput);
+		let iterator: ObjectIterator<any> = new ObjectIterator<any>(clonedInput);
 		
 		for (let element of iterator) {
 			

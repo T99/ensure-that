@@ -12,6 +12,20 @@
  * @since v0.1.0
  */
 export abstract class Type<E = any> {
+	
+	protected readonly isOptional: boolean;
+	
+	protected constructor(isOptional: boolean) {
+	
+		this.isOptional = isOptional;
+	
+	}
+	
+	public getOptionality(): boolean {
+		
+		return this.isOptional;
+		
+	}
 
 	public abstract getTypeName(): string;
 	

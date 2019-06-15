@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Type {
+    constructor(isOptional) {
+        this.isOptional = isOptional;
+    }
+    getOptionality() {
+        return this.isOptional;
+    }
     sanitize(input) {
         if (this.checkConformity(input))
             return input;
@@ -10,5 +16,5 @@ class Type {
         }
     }
 }
-exports.default = Type;
+exports.Type = Type;
 //# sourceMappingURL=type.js.map

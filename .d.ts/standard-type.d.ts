@@ -1,14 +1,17 @@
-import Type from "./type";
+import { Type } from "./type";
 declare type Validator = (input: any) => boolean;
-declare class StandardType<E> extends Type<E> {
+export declare class StandardType<E> extends Type<E> {
     static readonly NUMBER: StandardType<number>;
+    static readonly OPTIONAL_NUMBER: StandardType<number>;
     static readonly BOOLEAN: StandardType<boolean>;
+    static readonly OPTIONAL_BOOLEAN: StandardType<boolean>;
     static readonly STRING: StandardType<string>;
+    static readonly OPTIONAL_STRING: StandardType<string>;
     private name;
     private validator;
-    protected constructor(name: string, validator: Validator);
+    protected constructor(name: string, isOptional: boolean, validator: Validator);
     getTypeName(): string;
     checkConformity(input: any): boolean;
     exhaustivelyCheckConformity(input: any): boolean;
 }
-export default StandardType;
+export {};

@@ -17,9 +17,9 @@ export class ArrayType<E = any> extends Type<E[]> {
 	
 	private arrayType: Type;
 	
-	public constructor(arrayType: Type<E>) {
+	public constructor(arrayType: Type<E>, isOptional: boolean = false) {
 	
-		super();
+		super(isOptional);
 		
 		this.arrayType = arrayType;
 	

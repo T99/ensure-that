@@ -1,5 +1,4 @@
-import Type from "./type";
-interface ObjectTypeDefinition {
+import { Type } from "./type";
+export interface ObjectTypeDefinition {
     readonly [property: string]: Type | ObjectTypeDefinition;
 }
-export default ObjectTypeDefinition;

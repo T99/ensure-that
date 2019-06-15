@@ -1,18 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const iter_over_1 = require("iter-over");
-const type_1 = __importDefault(require("./type"));
-class ObjectType extends type_1.default {
-    constructor(typeDefinition, objectName = "") {
-        super();
+const type_1 = require("./type");
+class ObjectType extends type_1.Type {
+    constructor(typeDefinition, typeName = "", isOptional = false) {
+        super(isOptional);
         this.typeDefinition = typeDefinition;
-        this.objectName = objectName;
+        this.typeName = typeName;
     }
     static typeDefinitionToReadableJSON(typeDefinition) {
-        let iterator = new iter_over_1.IOObjectIterator(typeDefinition);
+        let iterator = new iter_over_1.ObjectIterator(typeDefinition);
         let result = {};
         for (let element of iterator) {
             if (element === undefined)
@@ -26,7 +23,7 @@ class ObjectType extends type_1.default {
     }
     static typeDefinitionToString(typeDefinition) {
         let structureToStringArray = (struct) => {
-            let iterator = new iter_over_1.IOObjectIterator(struct);
+            let iterator = new iter_over_1.ObjectIterator(struct);
             let resultLines = [];
             for (let element of iterator) {
                 if (element === undefined)
@@ -53,12 +50,15 @@ class ObjectType extends type_1.default {
         return ObjectType.typeDefinitionToString(this.typeDefinition);
     }
     getTypeName() {
-        return "object" + (this.objectName !== "" ? " (" + this.objectName + ")" : "");
+        return "object" + (this.typeName !== "" ? " (" + this.typeName + ")" : "");
+    }
+    getObjectTypeDefinition() {
+        return this.typeDefinition;
     }
     checkConformity(input, typeDefinition = this.typeDefinition) {
         if (!(typeof input === "object") || (input === null))
             return false;
-        let iterator = new iter_over_1.IOObjectIterator(typeDefinition);
+        let iterator = new iter_over_1.ObjectIterator(typeDefinition);
         for (let element of iterator) {
             if (element === undefined)
                 throw new Error("ERR | Attempted to use an undefined type definition.");
@@ -82,7 +82,7 @@ class ObjectType extends type_1.default {
         if (!this.checkConformity(input, typeDefinition))
             return false;
         let clonedInput = JSON.parse(JSON.stringify(input));
-        let iterator = new iter_over_1.IOObjectIterator(clonedInput);
+        let iterator = new iter_over_1.ObjectIterator(clonedInput);
         for (let element of iterator) {
             if (element === undefined)
                 throw new Error("ERR | Attempted to use an undefined type definition.");
@@ -105,5 +105,5 @@ class ObjectType extends type_1.default {
         return true;
     }
 }
-exports.default = ObjectType;
+exports.ObjectType = ObjectType;
 //# sourceMappingURL=object-type.js.map

@@ -19,38 +19,47 @@ export class StandardType<E> extends Type<E> {
 	
 	public static readonly NUMBER: StandardType<number> = new StandardType(
 		"number",
-		(input: any): boolean => {
-			
-			return ((typeof input === "number") && (!isNaN(input)));
-			
-		}
+		false,
+		(input: any): boolean => (typeof input === "number")
+	);
+	
+	public static readonly OPTIONAL_NUMBER: StandardType<number> = new StandardType(
+		"number",
+		true,
+		(input: any): boolean => (typeof input === "number")
 	);
 	
 	public static readonly BOOLEAN: StandardType<boolean> = new StandardType(
 		"boolean",
-		(input: any): boolean => {
-			
-			return (typeof input === "boolean");
-			
-		}
+		false,
+		(input: any): boolean => (typeof input === "boolean")
+	);
+	
+	public static readonly OPTIONAL_BOOLEAN: StandardType<boolean> = new StandardType(
+		"boolean",
+		true,
+		(input: any): boolean => (typeof input === "boolean")
 	);
 	
 	public static readonly STRING: StandardType<string> = new StandardType(
 		"string",
-		(input: any): boolean => {
-			
-			return (typeof input === "string");
-			
-		}
+		false,
+		(input: any): boolean => (typeof input === "string")
+	);
+	
+	public static readonly OPTIONAL_STRING: StandardType<string> = new StandardType(
+		"string",
+		true,
+		(input: any): boolean => (typeof input === "string")
 	);
 	
 	private name: string;
 	
 	private validator: Validator;
 	
-	protected constructor(name: string, validator: Validator) {
+	protected constructor(name: string, isOptional: boolean, validator: Validator) {
 	
-		super();
+		super(isOptional);
 		
 		this.name = name;
 		this.validator = validator;

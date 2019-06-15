@@ -1,12 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const type_1 = __importDefault(require("./type"));
-class SpecialType extends type_1.default {
-    constructor(name, validator) {
-        super();
+const type_1 = require("./type");
+class SpecialType extends type_1.Type {
+    constructor(name, isOptional, validator) {
+        super(isOptional);
         this.name = name;
         this.validator = validator;
     }
@@ -20,9 +17,13 @@ class SpecialType extends type_1.default {
         return this.checkConformity(input);
     }
 }
-SpecialType.ANY = new SpecialType("any", (input) => true);
-SpecialType.VOID = new SpecialType("void", (input) => false);
-SpecialType.UNDEFINED = new SpecialType("undefined", (input) => input === undefined);
-SpecialType.NULL = new SpecialType("null", (input) => input === null);
-exports.default = SpecialType;
+SpecialType.ANY = new SpecialType("any", false, (input) => true);
+SpecialType.OPTIONAL_ANY = new SpecialType("any", true, (input) => true);
+SpecialType.VOID = new SpecialType("void", false, (input) => false);
+SpecialType.OPTIONAL_VOID = new SpecialType("void", true, (input) => false);
+SpecialType.UNDEFINED = new SpecialType("undefined", false, (input) => input === undefined);
+SpecialType.OPTIONAL_UNDEFINED = new SpecialType("undefined", true, (input) => input === undefined);
+SpecialType.NULL = new SpecialType("null", false, (input) => input === null);
+SpecialType.OPTIONAL_NULL = new SpecialType("null", true, (input) => input === null);
+exports.SpecialType = SpecialType;
 //# sourceMappingURL=special-type.js.map

@@ -19,21 +19,49 @@ export class SpecialType<E> extends Type<E> {
 	
 	public static readonly ANY: SpecialType<any> = new SpecialType(
 		"any",
+		false,
+		(input: any): boolean => true
+	);
+	
+	public static readonly OPTIONAL_ANY: SpecialType<any> = new SpecialType(
+		"any",
+		true,
 		(input: any): boolean => true
 	);
 	
 	public static readonly VOID: SpecialType<void> = new SpecialType(
 		"void",
+		false,
+		(input: any): boolean => false
+	);
+	
+	public static readonly OPTIONAL_VOID: SpecialType<void> = new SpecialType(
+		"void",
+		true,
 		(input: any): boolean => false
 	);
 	
 	public static readonly UNDEFINED: SpecialType<undefined> = new SpecialType(
 		"undefined",
+		false,
+		(input: any): boolean => input === undefined
+	);
+	
+	public static readonly OPTIONAL_UNDEFINED: SpecialType<undefined> = new SpecialType(
+		"undefined",
+		true,
 		(input: any): boolean => input === undefined
 	);
 	
 	public static readonly NULL: SpecialType<null> = new SpecialType(
 		"null",
+		false,
+		(input: any): boolean => input === null
+	);
+	
+	public static readonly OPTIONAL_NULL: SpecialType<null> = new SpecialType(
+		"null",
+		true,
 		(input: any): boolean => input === null
 	);
 	
@@ -41,9 +69,9 @@ export class SpecialType<E> extends Type<E> {
 	
 	private validator: Validator;
 	
-	protected constructor(name: string, validator: Validator) {
+	protected constructor(name: string, isOptional: boolean, validator: Validator) {
 		
-		super();
+		super(isOptional);
 		
 		this.name = name;
 		this.validator = validator;
