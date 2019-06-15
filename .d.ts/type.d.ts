@@ -1,7 +1,7 @@
 export declare abstract class Type<E = any> {
-    protected readonly isOptional: boolean;
+    protected readonly optional: boolean;
     protected constructor(isOptional: boolean);
-    getOptionality(): boolean;
+    isOptional(): boolean;
     abstract getTypeName(): string;
     abstract checkConformity(input: any): boolean;
     abstract exhaustivelyCheckConformity(input: any): boolean;

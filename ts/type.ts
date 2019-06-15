@@ -13,17 +13,17 @@
  */
 export abstract class Type<E = any> {
 	
-	protected readonly isOptional: boolean;
+	protected readonly optional: boolean;
 	
 	protected constructor(isOptional: boolean) {
 	
-		this.isOptional = isOptional;
+		this.optional = isOptional;
 	
 	}
 	
-	public getOptionality(): boolean {
+	public isOptional(): boolean {
 		
-		return this.isOptional;
+		return this.optional;
 		
 	}
 

@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Type {
     constructor(isOptional) {
-        this.isOptional = isOptional;
+        this.optional = isOptional;
     }
-    getOptionality() {
-        return this.isOptional;
+    isOptional() {
+        return this.optional;
     }
     sanitize(input) {
         if (this.checkConformity(input))

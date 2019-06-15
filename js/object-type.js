@@ -63,16 +63,17 @@ class ObjectType extends type_1.Type {
             if (element === undefined)
                 throw new Error("ERR | Attempted to use an undefined type definition.");
             let propertyName = element.key;
-            let propertyValue = input[propertyName];
-            if (propertyValue === undefined)
-                return false;
             if (element.value.getTypeName !== undefined) {
                 let type = element.value;
-                if (!type.checkConformity(propertyValue))
+                if (input.hasOwnProperty(propertyName)) {
+                    if (!type.checkConformity(input[propertyName]))
+                        return false;
+                }
+                else if (!type.isOptional())
                     return false;
             }
             else {
-                if (!this.checkConformity(propertyValue, element.value))
+                if (!this.checkConformity(input[propertyName], element.value))
                     return false;
             }
         }
