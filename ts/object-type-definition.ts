@@ -7,7 +7,7 @@
 import { Type } from "./type";
 
 /**
- *
+ * TODO
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
  * @version v0.3.0
@@ -15,6 +15,7 @@ import { Type } from "./type";
  */
 export interface ObjectTypeDefinition {
 	
+	// DOC-ME [6/15/19 @ 7:13 PM] - Documentation required!
 	readonly [property: string]: Type | ObjectTypeDefinition;
 
 }

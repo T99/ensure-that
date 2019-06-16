@@ -9,7 +9,7 @@ export declare class SpecialType<E> extends Type<E> {
     static readonly OPTIONAL_UNDEFINED: SpecialType<undefined>;
     static readonly NULL: SpecialType<null>;
     static readonly OPTIONAL_NULL: SpecialType<null>;
-    protected name: string;
+    protected typeName: string;
     protected validator: Validator;
     protected constructor(name: string, isOptional: boolean, validator: Validator);
     getTypeName(): string;

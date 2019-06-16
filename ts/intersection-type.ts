@@ -31,13 +31,12 @@ import * as Merj from "merj";
  * }
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.1.0
- * @since v0.1.0
+ * @version v0.5.0
+ * @since v0.4.0
  */
 export class IntersectionType extends ObjectType {
 	
-	protected typeName: string;
-	
+	// DOC-ME [6/15/19 @ 7:13 PM] - Documentation required!
 	public constructor(types: ObjectType[], isOptional: boolean = false) {
 	
 		super(Merj.merge(types.map((type: ObjectType) => type.getObjectTypeDefinition())), "", isOptional);

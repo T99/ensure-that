@@ -4,11 +4,11 @@ const type_1 = require("./type");
 class SpecialType extends type_1.Type {
     constructor(name, isOptional, validator) {
         super(isOptional);
-        this.name = name;
+        this.typeName = name;
         this.validator = validator;
     }
     getTypeName() {
-        return this.name;
+        return this.typeName;
     }
     checkConformity(input) {
         return this.validator(input);

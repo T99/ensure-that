@@ -9,29 +9,46 @@ import { Type } from "./type";
 import { ObjectTypeDefinition } from "./object-type-definition";
 
 /**
- *
+ * A type that represents a potentially complex, multi-level JavaScript object.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.3.0
+ * @version v0.5.0
  * @since v0.1.0
  */
 export class ObjectType extends Type {
 	
-	// TODO [5/27/19 @ 12:54 AM] - Need to take into account that some properties might be optional, nullable, or explicitly undefined.
+	/**
+	 * The name of this type.
+	 */
+	protected typeName: string | undefined;
 	
-	protected typeName: string;
-	
+	/**
+	 * The {@link ObjectTypeDefinition} that this ObjectType uses to check the conformity of provided inputs.
+	 */
 	protected typeDefinition: ObjectTypeDefinition;
 	
-	public constructor(typeDefinition: ObjectTypeDefinition, typeName: string = "", isOptional: boolean = false) {
-	
+	/**
+	 * Initializes a new ObjectType with a given {@link ObjectTypeDefinition}, type name, and optionality.
+	 *
+	 * The type definition argument is optional, and if not passed will default to an empty type definition, meaning
+	 * that any provided inputs will succeed given that they are objects of any form.
+	 *
+	 * The type name is optional as well and
+	 *
+	 * @param typeDefinition
+	 * @param typeName
+	 * @param isOptional
+	 */
+	public constructor(typeDefinition: ObjectTypeDefinition = {}, typeName?: string, isOptional: boolean = false) {
+		
 		super(isOptional);
 		
 		this.typeDefinition = typeDefinition;
 		this.typeName = typeName;
-	
+		
 	}
 	
+	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
 	public static typeDefinitionToReadableJSON(typeDefinition: ObjectTypeDefinition): any {
 		
 		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
@@ -47,9 +64,10 @@ export class ObjectType extends Type {
 		}
 		
 		return result;
-	
+		
 	}
 	
+	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
 	public static typeDefinitionToString(typeDefinition: ObjectTypeDefinition): string {
 		
 		let structureToStringArray: (struct: ObjectTypeDefinition) => string[] = (struct: ObjectTypeDefinition): string[] => {
@@ -87,61 +105,72 @@ export class ObjectType extends Type {
 		
 	}
 	
+	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
 	public typeDefinitionToReadableJSON(): any {
 		
 		return ObjectType.typeDefinitionToReadableJSON(this.typeDefinition);
 		
 	}
 	
+	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
 	public typeDefinitionToString(): string {
 		
 		return ObjectType.typeDefinitionToString(this.typeDefinition);
 		
 	}
 	
+	/**
+	 * Returns the string name of this ObjectType.
+	 *
+	 * @return The string name of this ObjectType.
+	 */
 	public getTypeName(): string {
 		
-		return "object" + (this.typeName !== "" ? " (" + this.typeName + ")" : "");
+		return "object" + (this.typeName !== undefined ? " (" + this.typeName + ")" : "");
 		
 	}
 	
+	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
 	public getObjectTypeDefinition(): ObjectTypeDefinition {
 		
 		return this.typeDefinition;
 		
 	}
 	
+	/**
+	 * TODO
+	 *
+	 * @param input Any variable to check for conformity to this ObjectType.
+	 */
 	public checkConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
 		if (!(typeof input === "object") || (input === null)) return false;
 		
 		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
 		
-		for (let element of iterator) {
+		for (let typeOrTypeDefinition of iterator) {
 			
-			if (element === undefined) throw new Error("ERR | Attempted to use an undefined type definition.");
-			
-			let propertyName: string = element.key;
+			let typePropertyName: string = typeOrTypeDefinition.key;
 			
 			// We're dealing with a Type, not an ObjectTypeDefinition.
-			if (element.value.getTypeName !== undefined) {
-
-				let type: Type = element.value as Type;
+			if (typeOrTypeDefinition.value.getTypeName !== undefined) {
+				
+				let type: Type = typeOrTypeDefinition.value as Type;
 				
 				// If the provided input has a property by the name defined in the type definition...
-				if (input.hasOwnProperty(propertyName)) {
+				if (input.hasOwnProperty(typePropertyName)) {
 					
 					// If the input's equivalent property does not conform to the type definition of said property...
-					if (!type.checkConformity(input[propertyName])) return false;
+					if (!type.checkConformity(input[typePropertyName])) return false;
 					
 				// If the value/type was not optionally defined...
 				} else if (!type.isOptional()) return false;
 				
 			// We're dealing with a ObjectTypeDefinition, not an Type.
 			} else {
-
-				if (!this.checkConformity(input[propertyName], element.value as ObjectTypeDefinition)) return false;
-
+				
+				if (!this.checkConformity(input[typePropertyName], typeOrTypeDefinition.value as ObjectTypeDefinition)) return false;
+				
 			}
 			
 		}
@@ -150,31 +179,33 @@ export class ObjectType extends Type {
 		
 	}
 	
+	/**
+	 * TODO
+	 *
+	 * @param input Any variable to exhaustively check for conformity to this ObjectType.
+	 */
 	public exhaustivelyCheckConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
 		if (!this.checkConformity(input, typeDefinition)) return false;
 		
-		let clonedInput: any = JSON.parse(JSON.stringify(input));
-		let iterator: ObjectIterator<any> = new ObjectIterator<any>(clonedInput);
+		let iterator: ObjectIterator = new ObjectIterator(input);
 		
-		for (let element of iterator) {
+		for (let inputKVPair of iterator) {
 			
-			if (element === undefined) throw new Error("ERR | Attempted to use an undefined type definition.");
+			let inputPropertyName: string = inputKVPair.key;
+			let inputPropertyValue: any = input[inputPropertyName];
 			
-			let propertyName: string = element.key;
-			let propertyValue: any = input[propertyName];
-			
-			if (typeDefinition[propertyName] !== undefined) {
+			if (typeDefinition[inputPropertyName] !== undefined) {
 				
-				if (typeDefinition[propertyName].getTypeName !== undefined) {
+				if (typeDefinition[inputPropertyName].getTypeName !== undefined) {
 					
-					let type: Type = typeDefinition[propertyName] as Type;
+					let type: Type = typeDefinition[inputPropertyName] as Type;
 					
-					if (!type.checkConformity(propertyValue)) return false;
+					if (!type.checkConformity(inputPropertyValue)) return false;
 					
 				} else {
 					
-					if (!this.exhaustivelyCheckConformity(propertyValue, typeDefinition[propertyName] as ObjectTypeDefinition)) return false;
+					if (!this.exhaustivelyCheckConformity(inputPropertyValue, typeDefinition[inputPropertyName] as ObjectTypeDefinition)) return false;
 					
 				}
 				

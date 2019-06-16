@@ -1,5 +1,5 @@
 export declare abstract class Type<E = any> {
-    protected readonly optional: boolean;
+    protected optional: boolean;
     protected constructor(isOptional: boolean);
     isOptional(): boolean;
     abstract getTypeName(): string;

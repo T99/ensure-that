@@ -8,16 +8,30 @@ import { Type } from "./type";
 import { SpecialType } from "./special-type";
 
 /**
- *
+ * A type that represents an Array of a given type.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.3.0
+ * @version v0.5.0
  * @since v0.1.0
  */
 export class ArrayType<E = any> extends Type<E[]> {
 	
+	/**
+	 * The type to which the members of the arrays passed to this ArrayType should conform.
+	 *
+	 * In other words, this is the type of the members of the array.
+	 */
 	protected arrayType: Type;
 	
+	/**
+	 * Initializes a new ArrayType with a given member type and optionality.
+	 *
+	 * The `arrayType` parameter defaults to `SpecialType.ANY` so that if no arguments are passed to this constructor,
+	 * inputs that are checked for conformity by the constructed type will pass so long as they are actually arrays.
+	 *
+	 * @param arrayType The type of the members of the array.
+	 * @param isOptional Whether or not this type should be optional when present in an {@link ObjectType}.
+	 */
 	public constructor(arrayType: Type<E> = SpecialType.ANY, isOptional: boolean = false) {
 	
 		super(isOptional);
@@ -26,12 +40,23 @@ export class ArrayType<E = any> extends Type<E[]> {
 	
 	}
 	
+	/**
+	 * Returns the string name of this ArrayType.
+	 *
+	 * @return The string name of this ArrayType.
+	 */
 	public getTypeName(): string {
 		
 		return "Array<" + this.arrayType.getTypeName() + ">";
 		
 	}
 	
+	/**
+	 * Checks that the provided input is an array, and that the array's contents conform to the given type of this
+	 * ArrayType.
+	 *
+	 * @param input Any variable to check for conformity to this ArrayType.
+	 */
 	public checkConformity(input: any): boolean {
 		
 		if (!Array.isArray(input)) return false;
@@ -51,6 +76,12 @@ export class ArrayType<E = any> extends Type<E[]> {
 		
 	}
 	
+	/**
+	 * Due to the fact that an exhaustive check of an array wouldn't do anything different than the normal conformity
+	 * check, this method simply redirects to {@link ArrayType#checkConformity}.
+	 *
+	 * @param input Any variable to exhaustively check for conformity to this ArrayType.
+	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		
 		return this.checkConformity(input);
