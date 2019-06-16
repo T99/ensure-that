@@ -10,3 +10,10 @@ Install from NPM with
 ```
 $ npm install --save typit
 ```
+
+## License
+typit is made available under the GNU General Public License v3.
+
+Copyright (C) 2019 Trevor Sears
+
+Find the full license [here](https://github.com/T99/typit/blob/master/license.md).
