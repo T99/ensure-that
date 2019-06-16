@@ -78,7 +78,7 @@ class ObjectType extends type_1.Type {
                         }
                     }
                     else if (!type.isOptional()) {
-                        nonConformities.push(new malformed_object_error_1.MalformedObjectError([typePropertyName], type, input[typePropertyName], special_type_1.SpecialType.NON_PRESENT));
+                        nonConformities.push(new malformed_object_error_1.MalformedObjectError([typePropertyName], type, input[typePropertyName], special_type_1.SpecialType.NOT_PRESENT));
                     }
                 }
                 else {

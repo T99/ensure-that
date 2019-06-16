@@ -1,6 +1,6 @@
 {
   "name": "typit",
-  "version": "0.6.1",
+  "version": "0.6.4",
   "description": "Fully recursive runtime typechecking.",
   "main": "js/main",
   "types": ".d.ts/main",

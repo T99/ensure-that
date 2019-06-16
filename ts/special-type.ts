@@ -52,8 +52,8 @@ export class SpecialType<E> extends Type<E> {
 	/**
 	 * The 'non-present' type, to which no value conforms.
 	 */
-	public static readonly NON_PRESENT: SpecialType<null> = new SpecialType(
-		"non-present",
+	public static readonly NOT_PRESENT: SpecialType<null> = new SpecialType(
+		"not-present",
 		(input: any): boolean => false
 	);
 	

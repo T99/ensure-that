@@ -21,6 +21,6 @@ SpecialType.ANY = new SpecialType("any", (input) => true);
 SpecialType.VOID = new SpecialType("void", (input) => false);
 SpecialType.UNDEFINED = new SpecialType("undefined", (input) => input === undefined);
 SpecialType.NULL = new SpecialType("null", (input) => input === null);
-SpecialType.NON_PRESENT = new SpecialType("non-present", (input) => false);
+SpecialType.NOT_PRESENT = new SpecialType("not-present", (input) => false);
 exports.SpecialType = SpecialType;
 //# sourceMappingURL=special-type.js.map

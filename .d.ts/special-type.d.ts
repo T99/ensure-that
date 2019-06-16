@@ -5,7 +5,7 @@ export declare class SpecialType<E> extends Type<E> {
     static readonly VOID: SpecialType<void>;
     static readonly UNDEFINED: SpecialType<undefined>;
     static readonly NULL: SpecialType<null>;
-    static readonly NON_PRESENT: SpecialType<null>;
+    static readonly NOT_PRESENT: SpecialType<null>;
     protected typeName: string;
     protected validator: Validator;
     protected constructor(name: string, validator: Validator);

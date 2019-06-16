@@ -207,7 +207,7 @@ export class ObjectType extends Type {
 						// If the value/type was not optionally defined...
 					} else if (!type.isOptional()) {
 						
-						nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName], SpecialType.NON_PRESENT));
+						nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName], SpecialType.NOT_PRESENT));
 						
 					}
 					
