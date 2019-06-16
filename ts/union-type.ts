@@ -30,7 +30,7 @@ export class UnionType<E = any> extends Type<E> {
 	 *
 	 * @param types The Types to union for this UnionType.
 	 */
-	public constructor(types: Type[]) {
+	public constructor(...types: Type[]) {
 		
 		super();
 		

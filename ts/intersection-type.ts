@@ -41,7 +41,7 @@ export class IntersectionType extends ObjectType {
 	 *
 	 * @param types The {@link Type}s to merge in order to form the intersection of said Types.
 	 */
-	public constructor(types: ObjectType[]) {
+	public constructor(...types: ObjectType[]) {
 	
 		super(Merj.merge(types.map((type: ObjectType) => type.getObjectTypeDefinition())), "");
 		

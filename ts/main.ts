@@ -21,6 +21,7 @@ export { ObjectTypeDefinition } from "./object-type-definition";
 export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
 export { EnumType } from "./enum-type";
 export { OptionalType } from "./optional-type";
+export { MalformedObjectError } from "./malformed-object-error";
 
 export {
 	IntersectionType,

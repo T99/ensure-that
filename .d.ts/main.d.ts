@@ -7,5 +7,6 @@ export { ObjectTypeDefinition } from "./object-type-definition";
 export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
 export { EnumType } from "./enum-type";
 export { OptionalType } from "./optional-type";
+export { MalformedObjectError } from "./malformed-object-error";
 export { IntersectionType, IntersectionType as MultiType, IntersectionType as AndType } from "./intersection-type";
 export { UnionType, UnionType as OrType } from "./union-type";

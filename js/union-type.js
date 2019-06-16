@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_1 = require("./type");
 class UnionType extends type_1.Type {
-    constructor(types) {
+    constructor(...types) {
         super();
         this.acceptableTypes = types;
         this.typeName = "";

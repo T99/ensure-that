@@ -1,13 +1,13 @@
 {
   "name": "typit",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Fully recursive runtime typechecking.",
   "main": "js/main",
   "types": ".d.ts/main",
   "scripts": {
     "build": "rm -rf .d.ts/ js/ && tsc -p ts/tsconfig.json",
-    "main": "node js/main",
-    "test": "jest"
+    "main": "npm run build && node js/main",
+    "test": "npm run build && jest"
   },
   "repository": {
     "type": "git",
