@@ -12,50 +12,32 @@ type Validator = (input: any) => boolean;
  * An enumeration of the standard types found in JavaScript.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.1.0
  */
 export class StandardType<E> extends Type<E> {
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'number' type, to which numeric values conform.
+	 */
 	public static readonly NUMBER: StandardType<number> = new StandardType(
 		"number",
-		false,
 		(input: any): boolean => (typeof input === "number")
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_NUMBER: StandardType<number> = new StandardType(
-		"number",
-		true,
-		(input: any): boolean => (typeof input === "number")
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'boolean' type, to which truthy and falsy values conform.
+	 */
 	public static readonly BOOLEAN: StandardType<boolean> = new StandardType(
 		"boolean",
-		false,
 		(input: any): boolean => (typeof input === "boolean")
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_BOOLEAN: StandardType<boolean> = new StandardType(
-		"boolean",
-		true,
-		(input: any): boolean => (typeof input === "boolean")
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'string' type, to which string values conform.
+	 */
 	public static readonly STRING: StandardType<string> = new StandardType(
 		"string",
-		false,
-		(input: any): boolean => (typeof input === "string")
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_STRING: StandardType<string> = new StandardType(
-		"string",
-		true,
 		(input: any): boolean => (typeof input === "string")
 	);
 	
@@ -69,10 +51,17 @@ export class StandardType<E> extends Type<E> {
 	 */
 	protected validator: Validator;
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	protected constructor(name: string, isOptional: boolean, validator: Validator) {
+	/**
+	 * Initializes a new StandardType with the provided name and validator function.
+	 *
+	 * This method is protected and most likely will not need to be called by any child classes.
+	 *
+	 * @param name The name of the newly initialized StandardType.
+	 * @param validator The validator function of the newly initialized StandardType.
+	 */
+	protected constructor(name: string, validator: Validator) {
 	
-		super(isOptional);
+		super();
 		
 		this.typeName = name;
 		this.validator = validator;
@@ -91,10 +80,12 @@ export class StandardType<E> extends Type<E> {
 	}
 	
 	/**
-	 * TODO
+	 * Returns true if and only if the provided input conforms to the validator function of whichever StandardType
+	 * is being used.
 	 *
 	 * @param input Any variable to check for conformity to this StandardType.
-	 * @return
+	 * @return true if and only if the provided input conforms to the validator function of whichever StandardType
+	 * is being used.
 	 */
 	public checkConformity(input: any): boolean {
 		
@@ -103,9 +94,12 @@ export class StandardType<E> extends Type<E> {
 	}
 	
 	/**
-	 * TODO
+	 * Due to the fact that an exhaustive check of StandardTypes wouldn't do anything different than the normal
+	 * conformity check, this method simply redirects to {@link StandardType#checkConformity}.
 	 *
 	 * @param input Any variable to exhaustively check for conformity to this StandardType.
+	 * @return true if and only if the provided input conforms to the validator function of whichever StandardType
+	 * is being used.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

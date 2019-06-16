@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_1 = require("./type");
 class EnumType extends type_1.Type {
-    constructor(acceptableValues, typeName, isOptional = false) {
-        super(isOptional);
+    constructor(acceptableValues, typeName) {
+        super();
         this.acceptableValues = acceptableValues;
         if (typeName !== undefined)
             this.typeName = typeName;

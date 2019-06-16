@@ -8,76 +8,91 @@
  * An interface for classes that check for conformity to a given type at runtime.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.1.0
  */
 export abstract class Type<E = any> {
 	
 	/**
-	 * Whether or not this value is optional.
-	 *
-	 * @see Type#isOptional
+	 * Initializes a new Type.
 	 */
-	protected optional: boolean;
-	
-	/**
-	 * Initializes a new Type with the given optionality.
-	 *
-	 * @param isOptional true if this Type should be optional.
-	 */
-	protected constructor(isOptional: boolean) {
-	
-		this.optional = isOptional;
-	
-	}
+	protected constructor() { /* Do nothing. */ }
 	
 	/**
 	 * Returns the optionality of this Type.
 	 *
-	 * Optionality refers to whether or not the given type must appear at all on the object which is being checked for
-	 * a value of 'this' Type. Keep in mind that optionality does not refer to whether or not accessing the variable
-	 * will return 'undefined'. As counter-intuitive as it may seem, a value may be defined as 'undefined'. To better
-	 * represent this problem, an example:
-	 *
-	 * 	let obj = {
-	 * 	    myVal: undefined
-	 * 	}
-	 *
-	 * 	console.log(obj.myVal);		// returns 'undefined'
-	 * 	console.log(obj.yourVal);	// returns 'undefined'
-	 *
-	 * Given the above demonstration, you can see that both 'non-present' (also called 'blank', etc) variables, as well
-	 * as 'present' and defined variables will evaluate to 'undefined'. With this understanding, it might now be easier
-	 * to understand what optionality is: if a value is optional it can either be 'present' and of the Type represented
-	 * by this class, or it can be entirely 'non-present' - both of which cases would ensure conformity to this type
-	 * (given that this type is defined as optional).
+	 * @return true if this Type is optional.
 	 */
 	public isOptional(): boolean {
 		
-		return this.optional;
+		return false;
 		
 	}
 	
 	/**
-	 * Returns the name of this Type.
+	 * Returns the string name of this Type.
+	 *
+	 * @return The string name of this Type.
 	 */
 	public abstract getTypeName(): string;
 	
 	/**
-	 * TODO
+	 * Returns true if and only if the input value conforms to this Type.
 	 *
 	 * @param input Any variable to check for conformity to this Type.
+	 * @return true if and only if the input value conforms to this Type
 	 */
 	public abstract checkConformity(input: any): boolean;
 	
+	/**
+	 * Returns true if and only if all members passed as arguments conform to this Type.
+	 *
+	 * @param input Any number of variables to check for conformity to this Type.
+	 * @return true if and only if all members passed as arguments conform to this Type.
+	 */
+	public checkConformityOfAll(...input: any[]): boolean {
+		
+		return input.every((item: any): boolean => this.checkConformity(item));
+		
+	}
+	
+	/**
+	 * Returns true if and only if the input value exhaustively conforms to this Type.
+	 *
+	 * Note that the exact definition of "exhaustively conformity" differs between Types.
+	 *
+	 * @param input Any variable to exhaustively check for conformity to this Type.
+	 * @return true if and only if the input value exhaustively conforms to this Type.
+	 */
 	public abstract exhaustivelyCheckConformity(input: any): boolean;
 	
+	/**
+	 * Returns true if and only if all members passed as arguments exhaustively conform to this Type.
+	 *
+	 * Note that the exact definition of "exhaustively conformity" differs between Types.
+	 *
+	 * @param input Any number of variables to exhaustively check for conformity to this Type.
+	 * @return true if and only if all members passed as arguments exhaustively conform to this Type.
+	 */
+	public exhaustivelyCheckConformityOfAll(...input: any[]): boolean {
+		
+		return input.every((item: any): boolean => this.exhaustivelyCheckConformity(item));
+		
+	}
+	
+	/**
+	 * Either returns the given input if it correctly conforms to this {@link Type}, or throws a TypeError.
+	 *
+	 * @param input The input to sanitize.
+	 * @return The given input if it correctly conforms to this Type.
+	 * @throws A TypeError if the provided input does not correctly conform to this Type.
+	 */
 	public sanitize(input: any): E {
 		
 		if (this.checkConformity(input)) return input as E;
 		else {
 			
-			throw new Error("ERR | Attempted to sanitize content that did not match the desired type signature. " +
+			throw new TypeError("ERR | Attempted to sanitize content that did not match the desired type signature. " +
 				"Type of " + input.toString() + "was not '" + this.getTypeName() + "'");
 			
 		}

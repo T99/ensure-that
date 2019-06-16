@@ -4,6 +4,8 @@ export { SpecialType } from "./special-type";
 export { ArrayType } from "./array-type";
 export { ObjectType } from "./object-type";
 export { ObjectTypeDefinition } from "./object-type-definition";
+export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
 export { EnumType } from "./enum-type";
+export { OptionalType } from "./optional-type";
 export { IntersectionType, IntersectionType as MultiType, IntersectionType as AndType } from "./intersection-type";
 export { UnionType, UnionType as OrType } from "./union-type";

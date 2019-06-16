@@ -4,15 +4,17 @@
  *	Project: typit
  */
 
-import { ObjectIterator } from "iter-over";
 import { Type } from "./type";
 import { ObjectTypeDefinition } from "./object-type-definition";
+import { MalformedObjectError } from "./malformed-object-error";
+import { ObjectIterator } from "iter-over";
+import { SpecialType } from "./special-type";
 
 /**
  * A type that represents a potentially complex, multi-level JavaScript object.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.1.0
  */
 export class ObjectType extends Type {
@@ -20,7 +22,7 @@ export class ObjectType extends Type {
 	/**
 	 * The name of this type.
 	 */
-	protected typeName: string | undefined;
+	protected typeName: string;
 	
 	/**
 	 * The {@link ObjectTypeDefinition} that this ObjectType uses to check the conformity of provided inputs.
@@ -28,94 +30,23 @@ export class ObjectType extends Type {
 	protected typeDefinition: ObjectTypeDefinition;
 	
 	/**
-	 * Initializes a new ObjectType with a given {@link ObjectTypeDefinition}, type name, and optionality.
+	 * Initializes a new ObjectType with a given {@link ObjectTypeDefinition} and type name.
 	 *
 	 * The type definition argument is optional, and if not passed will default to an empty type definition, meaning
-	 * that any provided inputs will succeed given that they are objects of any form.
+	 * that any provided inputs will succeed given that they are objects of any form. Keep in mind that this includes
+	 * arrays.
 	 *
-	 * The type name is optional as well and
+	 * The type name is optional as well and if not provided will default to "object".
 	 *
-	 * @param typeDefinition
-	 * @param typeName
-	 * @param isOptional
+	 * @param typeDefinition The ObjectTypeDefinition to use to check the conformity of provided inputs.
+	 * @param typeName The name to use for this ObjectType. Defaults to "object".
 	 */
-	public constructor(typeDefinition: ObjectTypeDefinition = {}, typeName?: string, isOptional: boolean = false) {
+	public constructor(typeDefinition: ObjectTypeDefinition = {}, typeName: string = "object") {
 		
-		super(isOptional);
+		super();
 		
 		this.typeDefinition = typeDefinition;
 		this.typeName = typeName;
-		
-	}
-	
-	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
-	public static typeDefinitionToReadableJSON(typeDefinition: ObjectTypeDefinition): any {
-		
-		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
-		let result: any = {};
-		
-		for (let element of iterator) {
-			
-			if (element === undefined) throw new Error("ERR | Attempted to use an undefined type definition.");
-			
-			if (element.value.getTypeName !== undefined) result[element.key] = (element.value as Type).getTypeName();
-			else result[element.key] = ObjectType.typeDefinitionToReadableJSON(element.value as ObjectTypeDefinition);
-			
-		}
-		
-		return result;
-		
-	}
-	
-	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
-	public static typeDefinitionToString(typeDefinition: ObjectTypeDefinition): string {
-		
-		let structureToStringArray: (struct: ObjectTypeDefinition) => string[] = (struct: ObjectTypeDefinition): string[] => {
-			
-			let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(struct);
-			let resultLines: string[] = [];
-			
-			for (let element of iterator) {
-				
-				if (element === undefined) throw new Error("ERR | Attempted to use an undefined type definition.");
-				
-				if (element.value.getTypeName !== undefined) {
-					
-					let typeName: string = (element.value as Type).getTypeName();
-					
-					resultLines.push("|  " + element.key + ": " + typeName);
-					
-				} else {
-					
-					resultLines.push("|  " + element.key + ": object \u23ce");
-					
-					let nestedResultLines: string[] = structureToStringArray(element.value as ObjectTypeDefinition);
-					
-					for (let line of nestedResultLines) resultLines.push("|  " + line);
-					
-				}
-				
-			}
-			
-			return resultLines;
-			
-		};
-		
-		return structureToStringArray(typeDefinition).join("\n");
-		
-	}
-	
-	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
-	public typeDefinitionToReadableJSON(): any {
-		
-		return ObjectType.typeDefinitionToReadableJSON(this.typeDefinition);
-		
-	}
-	
-	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
-	public typeDefinitionToString(): string {
-		
-		return ObjectType.typeDefinitionToString(this.typeDefinition);
 		
 	}
 	
@@ -126,21 +57,17 @@ export class ObjectType extends Type {
 	 */
 	public getTypeName(): string {
 		
-		return "object" + (this.typeName !== undefined ? " (" + this.typeName + ")" : "");
-		
-	}
-	
-	// DOC-ME [6/15/19 @ 5:53 PM] - Documentation required!
-	public getObjectTypeDefinition(): ObjectTypeDefinition {
-		
-		return this.typeDefinition;
+		return this.typeName;
 		
 	}
 	
 	/**
-	 * TODO
+	 * Returns true if and only if the provided input conforms to this ObjectTypes's {@link ObjectTypeDefinition}.
 	 *
 	 * @param input Any variable to check for conformity to this ObjectType.
+	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
+	 * objects, most outside uses will not pass an argument for this parameter.
+	 * @return true if and only if the provided input conforms to this ObjectTypes's ObjectTypeDefinition.
 	 */
 	public checkConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
@@ -180,9 +107,16 @@ export class ObjectType extends Type {
 	}
 	
 	/**
-	 * TODO
+	 * Returns true if and only if the provided input conforms to this ObjectTypes's {@link ObjectTypeDefinition} and
+	 * contains no extra properties.
+	 *
+	 * In other words, the provided input must bi-directionally match the ObjectTypeDefinition.
 	 *
 	 * @param input Any variable to exhaustively check for conformity to this ObjectType.
+	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
+	 * objects, most outside uses will not pass an argument for this parameter.
+	 * @return true if and only if the provided input conforms to this ObjectTypes's ObjectTypeDefinition and contains
+	 * no extra values.
 	 */
 	public exhaustivelyCheckConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
@@ -216,5 +150,89 @@ export class ObjectType extends Type {
 		return true;
 		
 	}
+	
+	/**
+	 * Returns the {@link ObjectTypeDefinition} that this ObjectType uses to check passed inputs.
+	 *
+	 * @return The ObjectTypeDefinition that this ObjectType uses to check passed inputs.
+	 */
+	public getObjectTypeDefinition(): ObjectTypeDefinition {
+		
+		return this.typeDefinition;
+		
+	}
+	
+	/**
+	 * Generates and returns an array of {@link MalformedObjectError}s based on the input given and this ObjectType's
+	 * {@link ObjectTypeDefinition}.
+	 *
+	 * @param input Any variable for which to generate a list of non-conformities.
+	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
+	 * objects, most outside uses will not pass an argument for this parameter.
+	 * @return An array of MalformedObjectErrors containing all of the non-conformities found in the provided
+	 * input.
+	 */
+	public listNonConformities(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): MalformedObjectError[] {
+		
+		let nonConformities: MalformedObjectError[] = [];
+		
+		if (!(typeof input === "object") || (input === null)) {
+			
+			// The base object wasn't an object, report on the base object and return.
+			nonConformities.push(new MalformedObjectError([], new ObjectType(), input));
+			
+		} else {
+			
+			let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
+			
+			for (let typeOrTypeDefinition of iterator) {
+				
+				let typePropertyName: string = typeOrTypeDefinition.key;
+				
+				// We're dealing with a Type, not an ObjectTypeDefinition.
+				if (typeOrTypeDefinition.value.getTypeName !== undefined) {
+					
+					let type: Type = typeOrTypeDefinition.value as Type;
+					
+					// If the provided input has a property by the name defined in the type definition...
+					if (input.hasOwnProperty(typePropertyName)) {
+						
+						// If the input's equivalent property does not conform to the type definition of said property...
+						if (!type.checkConformity(input[typePropertyName])) {
+							
+							nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName]));
+							
+						}
+						
+						// If the value/type was not optionally defined...
+					} else if (!type.isOptional()) {
+						
+						nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName], SpecialType.NON_PRESENT));
+						
+					}
+					
+					// We're dealing with a ObjectTypeDefinition, not an Type.
+				} else {
+					
+					let nestedNonConformities: MalformedObjectError[] =
+						this.listNonConformities(input[typePropertyName], typeOrTypeDefinition.value as ObjectTypeDefinition);
+					
+					for (let nestedNonConformity of nestedNonConformities) {
+						
+						nonConformities.push(nestedNonConformity.prependPath(typePropertyName));
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		return nonConformities;
+		
+	}
+	
+	// TODO [6/15/19 @ 11:55 PM] - Add an 'exhaustivelyListNonConformities' method.
 	
 }

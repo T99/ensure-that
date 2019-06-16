@@ -8,7 +8,7 @@
  * NPM main class used for exporting this package's contents.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.3.0
+ * @version v0.6.0
  * @since v0.2.0
  */
 
@@ -18,7 +18,9 @@ export { SpecialType } from "./special-type";
 export { ArrayType } from "./array-type";
 export { ObjectType } from "./object-type";
 export { ObjectTypeDefinition } from "./object-type-definition";
+export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
 export { EnumType } from "./enum-type";
+export { OptionalType } from "./optional-type";
 
 export {
 	IntersectionType,

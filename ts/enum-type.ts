@@ -10,7 +10,7 @@ import { Type } from "./type";
  * A special kind of type that has a predefined/static set of acceptable values.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.4.0
  */
 export class EnumType<E = any> extends Type {
@@ -30,19 +30,17 @@ export class EnumType<E = any> extends Type {
 	protected acceptableValues: E[];
 	
 	/**
-	 * Initializes a new EnumType with the provided list of acceptable values, an optional type name, and a given
-	 * optionality.
+	 * Initializes a new EnumType with the provided list of acceptable values and an optional type name.
 	 *
 	 * If a type name is not provided, the type name will be set simply to "Enum".
 	 *
 	 * @param acceptableValues An array of acceptable values that conforming instances of this type should take on as
 	 * values.
 	 * @param typeName An optional name for this EnumType.
-	 * @param isOptional Whether or not this type should be optional when present in an {@link ObjectType}.
 	 */
-	public constructor(acceptableValues: E[], typeName?: string, isOptional: boolean = false) {
+	public constructor(acceptableValues: E[], typeName?: string) {
 	
-		super(isOptional);
+		super();
 		
 		this.acceptableValues = acceptableValues;
 		

@@ -10,8 +10,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const object_type_1 = require("./object-type");
 const Merj = __importStar(require("merj"));
 class IntersectionType extends object_type_1.ObjectType {
-    constructor(types, isOptional = false) {
-        super(Merj.merge(types.map((type) => type.getObjectTypeDefinition())), "", isOptional);
+    constructor(types) {
+        super(Merj.merge(types.map((type) => type.getObjectTypeDefinition())), "");
         this.typeName = "";
         for (let type of types) {
             if (this.typeName !== "")

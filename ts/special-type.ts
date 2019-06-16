@@ -12,65 +12,49 @@ type Validator = (input: any) => boolean;
  * An enumeration of certain special types found in JavaScript.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.1.0
  */
 export class SpecialType<E> extends Type<E> {
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'any' type, to which every value conforms.
+	 */
 	public static readonly ANY: SpecialType<any> = new SpecialType(
 		"any",
-		false,
 		(input: any): boolean => true
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_ANY: SpecialType<any> = new SpecialType(
-		"any",
-		true,
-		(input: any): boolean => true
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'void' type, to which no value conforms.
+	 */
 	public static readonly VOID: SpecialType<void> = new SpecialType(
 		"void",
-		false,
 		(input: any): boolean => false
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_VOID: SpecialType<void> = new SpecialType(
-		"void",
-		true,
-		(input: any): boolean => false
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'undefined' type, to which (present) explicitly undefined values conform.
+	 */
 	public static readonly UNDEFINED: SpecialType<undefined> = new SpecialType(
 		"undefined",
-		false,
 		(input: any): boolean => input === undefined
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_UNDEFINED: SpecialType<undefined> = new SpecialType(
-		"undefined",
-		true,
-		(input: any): boolean => input === undefined
-	);
-	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
+	/**
+	 * The 'null' type, to which null values conform.
+	 */
 	public static readonly NULL: SpecialType<null> = new SpecialType(
 		"null",
-		false,
 		(input: any): boolean => input === null
 	);
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	public static readonly OPTIONAL_NULL: SpecialType<null> = new SpecialType(
-		"null",
-		true,
-		(input: any): boolean => input === null
+	/**
+	 * The 'non-present' type, to which no value conforms.
+	 */
+	public static readonly NON_PRESENT: SpecialType<null> = new SpecialType(
+		"non-present",
+		(input: any): boolean => false
 	);
 	
 	/**
@@ -83,10 +67,17 @@ export class SpecialType<E> extends Type<E> {
 	 */
 	protected validator: Validator;
 	
-	// DOC-ME [6/15/19 @ 7:14 PM] - Documentation required!
-	protected constructor(name: string, isOptional: boolean, validator: Validator) {
+	/**
+	 * Initializes a new SpecialType with the provided name and validator function.
+	 *
+	 * This method is protected and most likely will not need to be called by any child classes.
+	 *
+	 * @param name The name of the newly initialized SpecialType.
+	 * @param validator The validator function of the newly initialized SpecialType.
+	 */
+	protected constructor(name: string, validator: Validator) {
 		
-		super(isOptional);
+		super();
 		
 		this.typeName = name;
 		this.validator = validator;
@@ -105,9 +96,12 @@ export class SpecialType<E> extends Type<E> {
 	}
 	
 	/**
-	 * TODO
+	 * Returns true if and only if the provided input conforms to the validator function of whichever SpecialType
+	 * is being used.
 	 *
 	 * @param input Any variable to check for conformity to this SpecialType.
+	 * @return true if and only if the provided input conforms to the validator function of whichever SpecialType
+	 * is being used.
 	 */
 	public checkConformity(input: any): boolean {
 		
@@ -116,9 +110,12 @@ export class SpecialType<E> extends Type<E> {
 	}
 	
 	/**
-	 * TODO
+	 * Due to the fact that an exhaustive check of SpecialTypes wouldn't do anything different than the normal
+	 * conformity check, this method simply redirects to {@link SpecialType#checkConformity}.
 	 *
 	 * @param input Any variable to exhaustively check for conformity to this SpecialType.
+	 * @return true if and only if the provided input conforms to the validator function of whichever SpecialType
+	 * is being used.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

@@ -1,6 +1,6 @@
 {
   "name": "typit",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Fully recursive runtime typechecking.",
   "main": "js/main",
   "types": ".d.ts/main",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/T99/typit#readme",
   "dependencies": {
-    "iter-over": "^1.1.2",
+    "iter-over": "^1.1.3",
     "merj": "^0.1.0"
   },
   "devDependencies": {

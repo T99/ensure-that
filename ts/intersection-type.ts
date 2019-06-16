@@ -31,15 +31,19 @@ import * as Merj from "merj";
  * }
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.5.0
+ * @version v0.6.0
  * @since v0.4.0
  */
 export class IntersectionType extends ObjectType {
 	
-	// DOC-ME [6/15/19 @ 7:13 PM] - Documentation required!
-	public constructor(types: ObjectType[], isOptional: boolean = false) {
+	/**
+	 * Initializes a new IntersectionType with the provided ObjectTypes.
+	 *
+	 * @param types The {@link Type}s to merge in order to form the intersection of said Types.
+	 */
+	public constructor(types: ObjectType[]) {
 	
-		super(Merj.merge(types.map((type: ObjectType) => type.getObjectTypeDefinition())), "", isOptional);
+		super(Merj.merge(types.map((type: ObjectType) => type.getObjectTypeDefinition())), "");
 		
 		this.typeName = "";
 		
