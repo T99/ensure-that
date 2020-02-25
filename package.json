@@ -5,9 +5,8 @@
   "main": "js/main",
   "types": ".d.ts/main",
   "scripts": {
-    "build": "rm -rf .d.ts/ js/ && tsc -p ts/tsconfig.json",
-    "main": "npm run build && node js/main",
-    "test": "npm run build && jest"
+    "build": "gulp rebuild",
+    "test": "gulp rebuild && jest"
   },
   "repository": {
     "type": "git",
