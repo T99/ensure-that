@@ -4,6 +4,7 @@
  *	Project: typit
  */
 
+import { AbstractType } from "./abstract-type";
 import { Type } from "./type";
 
 /**
@@ -31,7 +32,7 @@ import { Type } from "./type";
  * @version v0.6.0
  * @since v0.6.0
  */
-export class OptionalType<T extends Type> extends Type {
+export class OptionalType<T extends Type, E> extends AbstractType<E | undefined> {
 	
 	/**
 	 * The name of this type.

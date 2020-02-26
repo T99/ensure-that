@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
+import { AbstractType } from "./abstract-type";
 
 type Validator = (input: any) => boolean;
 
@@ -15,7 +15,7 @@ type Validator = (input: any) => boolean;
  * @version v0.6.0
  * @since v0.1.0
  */
-export class SpecialType<E> extends Type<E> {
+export class SpecialType<E> extends AbstractType<E> {
 	
 	/**
 	 * The 'any' type, to which every value conforms.

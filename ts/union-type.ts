@@ -4,6 +4,7 @@
  *	Project: typit
  */
 
+import { AbstractType } from "./abstract-type";
 import { Type } from "./type";
 
 /**
@@ -13,7 +14,7 @@ import { Type } from "./type";
  * @version v0.6.0
  * @since v0.4.0
  */
-export class UnionType<E = any> extends Type<E> {
+export class UnionType<E = any> extends AbstractType<E> {
 	
 	/**
 	 * The name of this type.

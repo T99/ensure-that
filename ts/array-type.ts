@@ -4,8 +4,9 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
+import { AbstractType } from "./abstract-type";
 import { SpecialType } from "./special-type";
+import { Type } from "./type";
 
 /**
  * A type that represents an Array of a given type.
@@ -14,7 +15,7 @@ import { SpecialType } from "./special-type";
  * @version v1.0.0
  * @since v0.1.0
  */
-export class ArrayType<E = any> extends Type<E[]> {
+export class ArrayType<E = any> extends AbstractType<E[]> {
 	
 	/**
 	 * The type to which the members of the arrays passed to this ArrayType should conform.
@@ -63,17 +64,15 @@ export class ArrayType<E = any> extends Type<E[]> {
 		if (!Array.isArray(input)) return false;
 		else {
 			
-			let inputArray: any[] = input;
-			
-			for (let element of inputArray) {
+			for (let element of input) {
 				
 				if (!this.arrayType.checkConformity(element)) return false;
 				
 			}
 			
+			return true;
+			
 		}
-		
-		return true;
 		
 	}
 	

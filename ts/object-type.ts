@@ -4,11 +4,12 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
+import { AbstractType } from "./abstract-type";
 import { ObjectTypeDefinition } from "./object-type-definition";
 import { MalformedObjectError } from "./malformed-object-error";
 import { ObjectIterator } from "iter-over";
 import { SpecialType } from "./special-type";
+import { Type } from "./type";
 
 /**
  * A type that represents a potentially complex, multi-level JavaScript object.
@@ -17,7 +18,7 @@ import { SpecialType } from "./special-type";
  * @version v0.6.0
  * @since v0.1.0
  */
-export class ObjectType extends Type {
+export class ObjectType<E = any> extends AbstractType<E> {
 	
 	/**
 	 * The name of this type.

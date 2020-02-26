@@ -14,6 +14,7 @@
 
 // Base Classes
 export { Type } from "./type";
+export { AbstractType } from "./abstract-type";
 
 // Concrete Types
 export { StandardType } from "./standard-type";

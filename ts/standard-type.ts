@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
+import { AbstractType } from "./abstract-type";
 
 type Validator = (input: any) => boolean;
 
@@ -15,7 +15,7 @@ type Validator = (input: any) => boolean;
  * @version v0.6.0
  * @since v0.1.0
  */
-export class StandardType<E> extends Type<E> {
+export class StandardType<E> extends AbstractType<E> {
 	
 	/**
 	 * The 'number' type, to which numeric values conform.

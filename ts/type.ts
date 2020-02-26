@@ -11,30 +11,21 @@
  * @version v0.1.0
  * @since v0.1.0
  */
-export abstract class Type<E = any> {
-	
-	/**
-	 * Initializes a new Type.
-	 */
-	protected constructor() { /* Do nothing. */ }
+export interface Type<E = any> {
 	
 	/**
 	 * Returns the optionality of this Type.
 	 *
 	 * @return true if this Type is optional.
 	 */
-	public isOptional(): boolean {
-		
-		return false;
-		
-	}
+	isOptional(): boolean;
 	
 	/**
 	 * Returns the string name of this Type.
 	 *
 	 * @return The string name of this Type.
 	 */
-	public abstract getTypeName(): string;
+	getTypeName(): string;
 	
 	/**
 	 * Returns true if and only if the input value conforms to this Type.
@@ -42,7 +33,7 @@ export abstract class Type<E = any> {
 	 * @param input Any variable to check for conformity to this Type.
 	 * @return true if and only if the input value conforms to this Type
 	 */
-	public abstract checkConformity(input: any): boolean;
+	checkConformity(input: any): boolean;
 	
 	/**
 	 * Returns true if and only if all members passed as arguments conform to this Type.
@@ -50,11 +41,7 @@ export abstract class Type<E = any> {
 	 * @param input Any number of variables to check for conformity to this Type.
 	 * @return true if and only if all members passed as arguments conform to this Type.
 	 */
-	public checkConformityOfAll(...input: any[]): boolean {
-		
-		return input.every((item: any): boolean => this.checkConformity(item));
-		
-	}
+	checkConformityOfAll(...input: any[]): boolean;
 	
 	/**
 	 * Returns true if and only if the input value exhaustively conforms to this Type.
@@ -64,7 +51,7 @@ export abstract class Type<E = any> {
 	 * @param input Any variable to exhaustively check for conformity to this Type.
 	 * @return true if and only if the input value exhaustively conforms to this Type.
 	 */
-	public abstract exhaustivelyCheckConformity(input: any): boolean;
+	exhaustivelyCheckConformity(input: any): boolean;
 	
 	/**
 	 * Returns true if and only if all members passed as arguments exhaustively conform to this Type.
@@ -74,11 +61,7 @@ export abstract class Type<E = any> {
 	 * @param input Any number of variables to exhaustively check for conformity to this Type.
 	 * @return true if and only if all members passed as arguments exhaustively conform to this Type.
 	 */
-	public exhaustivelyCheckConformityOfAll(...input: any[]): boolean {
-		
-		return input.every((item: any): boolean => this.exhaustivelyCheckConformity(item));
-		
-	}
+	exhaustivelyCheckConformityOfAll(...input: any[]): boolean;
 	
 	/**
 	 * Either returns the given input if it correctly conforms to this {@link Type}, or throws a TypeError.
@@ -87,16 +70,6 @@ export abstract class Type<E = any> {
 	 * @return The given input if it correctly conforms to this Type.
 	 * @throws A TypeError if the provided input does not correctly conform to this Type.
 	 */
-	public sanitize(input: any): E {
-		
-		if (this.checkConformity(input)) return input as E;
-		else {
-			
-			throw new TypeError("ERR | Attempted to sanitize content that did not match the desired type signature. " +
-				"Type of " + input.toString() + "was not '" + this.getTypeName() + "'");
-			
-		}
-		
-	}
+	sanitize(input: any): E;
 
 }
