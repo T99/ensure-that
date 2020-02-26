@@ -6,7 +6,7 @@
 
 import { AbstractType } from "./abstract-type";
 import { Type } from "./type";
-import { CompileTimeType } from "./compile-types/compile-time-type";
+import { CompileTimeType } from "../compile-types/compile-time-type";
 
 /**
  * A wrapper type that encapsulates other {@link Type}s in order to make them optional.

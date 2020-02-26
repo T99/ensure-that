@@ -6,7 +6,7 @@
 
 import { ObjectType } from "./object-type";
 import * as Merj from "merj";
-import { CompileTimeIntersectionType } from "./compile-types/compile-time-intersection-type";
+import { CompileTimeIntersectionType } from "../compile-types/compile-time-intersection-type";
 
 /**
  * A type that combines multiple types into one.

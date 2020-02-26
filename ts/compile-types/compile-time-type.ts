@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import { Type } from "../type";
+import { Type } from "../runtime-types/type";
 
 /**
  * A type that extracts and return the generic type from a Typit Type type.

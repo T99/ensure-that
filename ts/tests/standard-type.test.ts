@@ -4,7 +4,7 @@
  *	Project: typit
  */
 
-import { StandardType } from "../standard-type";
+import { StandardType } from "../runtime-types/standard-type";
 import { TEST_VALUES } from "./test-values";
 
 /**

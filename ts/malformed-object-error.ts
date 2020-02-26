@@ -4,8 +4,8 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
-import { TypeInferer } from "./type-inferer";
+import { SpecialType } from "./runtime-types/special-type";
+import { Type } from "./runtime-types/type";
 
 /**
  * A special type of {@link Error} that contains information about how a given object was deformed from its expected

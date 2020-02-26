@@ -13,31 +13,31 @@
  */
 
 // Base Classes
-export { Type } from "./type";
-export { AbstractType } from "./abstract-type";
+export { Type } from "./runtime-types/type";
+export { AbstractType } from "./runtime-types/abstract-type";
 
 // Concrete Types
-export { StandardType } from "./standard-type";
-export { SpecialType } from "./special-type";
-export { ObjectType } from "./object-type";
+export { StandardType } from "./runtime-types/standard-type";
+export { SpecialType } from "./runtime-types/special-type";
+export { ObjectType } from "./runtime-types/object-type";
 
 // Relative Types
-export { ArrayType } from "./array-type";
-export { OptionalType } from "./optional-type";
-export { EnumType } from "./enum-type";
+export { ArrayType } from "./runtime-types/array-type";
+export { OptionalType } from "./runtime-types/optional-type";
+export { EnumType } from "./runtime-types/enum-type";
 export {
 	IntersectionType,
 	IntersectionType as MultiType,
 	IntersectionType as AndType
-} from "./intersection-type";
+} from "./runtime-types/intersection-type";
 export {
 	UnionType,
 	UnionType as OrType
-} from "./union-type";
+} from "./runtime-types/union-type";
 
 // Object Type Definition Files
-export { ObjectTypeDefinition } from "./object-type-definition";
-export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
+export { ObjectTypeDefinition } from "./runtime-types/object-type-definition";
+export { ObjectTypeDefinitionUtil } from "./runtime-types/object-type-definition-util";
 
 // Compile Time Types
 export { CompileTimeType } from "./compile-types/compile-time-type";

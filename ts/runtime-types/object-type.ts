@@ -6,7 +6,7 @@
 
 import { AbstractType } from "./abstract-type";
 import { ObjectTypeDefinition } from "./object-type-definition";
-import { MalformedObjectError } from "./malformed-object-error";
+import { MalformedObjectError } from "../malformed-object-error";
 import { ObjectIterator } from "iter-over";
 import { SpecialType } from "./special-type";
 import { Type } from "./type";

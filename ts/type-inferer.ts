@@ -4,8 +4,9 @@
  *	Project: typit
  */
 
-import { Type } from "./type";
-import { SpecialType } from "./special-type";
+import { SpecialType } from "./runtime-types/special-type";
+import { Type } from "./runtime-types/type";
+import { StandardType } from "./runtime-types/standard-type";
 
 /**
  * A class that infers the Type of it's provided inputs.
