@@ -3,4 +3,5 @@
 js/
 node_modules/
 ts/tests/coverage
+ts/tests/manual
 package-lock.json
