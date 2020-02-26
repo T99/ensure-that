@@ -1,7 +1,7 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
  *	2:32 PM -- June 11th, 2019.
- *	Website: typit
+ *	Project: typit
  */
 
 /**
@@ -12,24 +12,31 @@
  * @since v0.2.0
  */
 
+// Base Classes
 export { Type } from "./type";
+
+// Concrete Types
 export { StandardType } from "./standard-type";
 export { SpecialType } from "./special-type";
-export { ArrayType } from "./array-type";
 export { ObjectType } from "./object-type";
-export { ObjectTypeDefinition } from "./object-type-definition";
-export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
-export { EnumType } from "./enum-type";
-export { OptionalType } from "./optional-type";
-export { MalformedObjectError } from "./malformed-object-error";
 
+// Relative Types
+export { ArrayType } from "./array-type";
+export { OptionalType } from "./optional-type";
+export { EnumType } from "./enum-type";
 export {
 	IntersectionType,
 	IntersectionType as MultiType,
 	IntersectionType as AndType
 } from "./intersection-type";
-
 export {
 	UnionType,
 	UnionType as OrType
 } from "./union-type";
+
+// Object Type Definition Files
+export { ObjectTypeDefinition } from "./object-type-definition";
+export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
+
+// Errors
+export { MalformedObjectError } from "./malformed-object-error";

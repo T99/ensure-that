@@ -1,7 +1,7 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
  *	10:18 PM -- June 15th, 2019.
- *	Website: typit
+ *	Project: typit
  */
 
 import { Type } from "./type";

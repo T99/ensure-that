@@ -1,7 +1,7 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
  *	7:02 PM -- June 13th, 2019.
- *	Website: typit
+ *	Project: typit
  */
 
 import { StandardType } from "../standard-type";

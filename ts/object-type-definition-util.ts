@@ -1,12 +1,12 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
  *	8:46 PM -- June 15th, 2019.
- *	Website: typit
+ *	Project: typit
  */
 
-import { Type } from "./type";
 import { ObjectTypeDefinition } from "./object-type-definition";
 import { ObjectIterator } from "iter-over";
+import { Type } from "./type";
 
 /**
  * Utility methods for {@link ObjectTypeDefinition}s.

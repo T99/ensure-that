@@ -1,14 +1,14 @@
 /*
  *	Created by Trevor Sears <trevorsears.main@gmail.com>.
- *	5:59 PM -- May 26th, 2019.
+ *	11:37 AM -- September 11th, 2019.
  *	Project: typit
  */
 
 /**
- * An interface for classes that check for conformity to a given type at runtime.
+ * An interface for all Typit types.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v0.1.0
  * @since v0.1.0
  */
 export abstract class Type<E = any> {

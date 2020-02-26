@@ -11,7 +11,7 @@ import { SpecialType } from "./special-type";
  * A type that represents an Array of a given type.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v1.0.0
  * @since v0.1.0
  */
 export class ArrayType<E = any> extends Type<E[]> {
