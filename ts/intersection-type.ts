@@ -6,6 +6,7 @@
 
 import { ObjectType } from "./object-type";
 import * as Merj from "merj";
+import { CompileTimeIntersectionType } from "./compile-types/compile-time-intersection-type";
 
 /**
  * A type that combines multiple types into one.
@@ -34,7 +35,9 @@ import * as Merj from "merj";
  * @version v0.6.0
  * @since v0.4.0
  */
-export class IntersectionType extends ObjectType {
+export class IntersectionType<E1 = any, E2 = unknown, E3 = unknown, E4 = unknown, E5 = unknown, E6 = unknown,
+	E7 = unknown, E8 = unknown, E9 = unknown> extends ObjectType<CompileTimeIntersectionType<E1, E2, E3, E4, E5, E6, E7,
+	E8, E9>> {
 	
 	/**
 	 * Initializes a new IntersectionType with the provided ObjectTypes.

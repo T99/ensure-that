@@ -39,5 +39,9 @@ export {
 export { ObjectTypeDefinition } from "./object-type-definition";
 export { ObjectTypeDefinitionUtil } from "./object-type-definition-util";
 
+// Compile Time Types
+export { CompileTimeType } from "./compile-types/compile-time-type";
+export { CompileTimeIntersectionType } from "./compile-types/compile-time-intersection-type";
+
 // Errors
 export { MalformedObjectError } from "./malformed-object-error";

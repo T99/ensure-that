@@ -6,6 +6,7 @@
 
 import { AbstractType } from "./abstract-type";
 import { Type } from "./type";
+import { CompileTimeType } from "./compile-types/compile-time-type";
 
 /**
  * A wrapper type that encapsulates other {@link Type}s in order to make them optional.
@@ -32,7 +33,7 @@ import { Type } from "./type";
  * @version v0.6.0
  * @since v0.6.0
  */
-export class OptionalType<T extends Type, E> extends AbstractType<E | undefined> {
+export class OptionalType<T extends Type, E = CompileTimeType<T>> extends AbstractType<E | undefined> {
 	
 	/**
 	 * The name of this type.
