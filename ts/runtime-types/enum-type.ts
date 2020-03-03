@@ -10,7 +10,7 @@ import { AbstractType } from "./abstract-type";
  * A special kind of type that has a predefined/static set of acceptable values.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v1.0.0
  * @since v0.4.0
  */
 export class EnumType<E = any> extends AbstractType<E> {

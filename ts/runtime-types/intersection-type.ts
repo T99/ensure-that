@@ -32,7 +32,7 @@ import { CompileTimeIntersectionType } from "../compile-types/compile-time-inter
  * }
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v1.0.0
  * @since v0.4.0
  */
 export class IntersectionType<E1 = any, E2 = unknown, E3 = unknown, E4 = unknown, E5 = unknown, E6 = unknown,

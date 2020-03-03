@@ -30,7 +30,7 @@ import { CompileTimeType } from "../compile-types/compile-time-type";
  * (given that this type is defined as optional).
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v1.0.0
  * @since v0.6.0
  */
 export class OptionalType<T extends Type, E = CompileTimeType<T>> extends AbstractType<E | undefined> {

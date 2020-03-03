@@ -15,7 +15,7 @@ import { Type } from "./type";
  * A type that represents a potentially complex, multi-level JavaScript object.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
+ * @version v1.0.0
  * @since v0.1.0
  */
 export class ObjectType<E = any> extends AbstractType<E> {

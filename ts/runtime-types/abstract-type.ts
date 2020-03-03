@@ -10,8 +10,8 @@ import { Type } from "./type";
  * An interface for classes that check for conformity to a given type at runtime.
  *
  * @author Trevor Sears <trevorsears.main@gmail.com>
- * @version v0.6.0
- * @since v0.1.0
+ * @version v1.0.0
+ * @since v1.0.0
  */
 export abstract class AbstractType<E = any> implements Type {
 	
