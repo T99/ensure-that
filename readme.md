@@ -1,19 +1,19 @@
 # typit
-> #### Fully recursive runtime typechecking.
+Typit provides runtime type-checking abilities which are often useful when interacting with and/or building public APIs in which data could potentially be received in a malformed manner.
 
-Runtime type-checking is often useful when interacting with and/or building public APIs in which data might be recieved in a malformed manner. By using a runtime typechecking system, you can ensure that the data you are recieving and attempting to access (in a JSON format) is well-formed, defined, and correctly typed, removing the need to worry or 'check-on-access' the state and type of each key-value pair you attempt to use.
+By using a runtime typechecking system such as typit, a programmer can ensure that the data received by their programs is well-formed, well-defined and correctly typed, thus removing the need to worry about or 'check-on-access' the state and type of each key-value pair you attempt to use.
 
 ### [Find typit on NPM.](https://www.npmjs.com/package/typit)
 
 ## Table of Contents
-#### 1. [Installation](#installation) - How to install typit using NPM.
-#### 2. [Basic Usage](#basic-usage)
-#### 4. [The AbstractType Classes](#type-classes)
-#### 4. [License](#license)
+ - [Installation](#installation)
+ - [Basic Usage](#basic-usage)
+ - [Documentation](#documentation)
+ - [License](#license)
 
 ## Installation
 Install from NPM with
-```sh
+```
 $ npm install --save typit
 ```
 
@@ -33,8 +33,7 @@ Awesome! We can check if variables conform to any standard primitive types using
 But what about something a little more powerful? Might we be able to check if variables conform to more complex object structures? Let's see...
 
 ```typescript
-import { StandardType, ArrayType, ObjectType,
-         OptionalType, EnumType } from "typit";
+import { StandardType, ArrayType, ObjectType, OptionalType, EnumType } from "typit";
 
 let clientType: ObjectType = new ObjectType({
     clientID: StandardType.STRING,
@@ -81,6 +80,9 @@ clientType.checkConformity({
     }
 }); // Returns 'false'.
 ```
+
+## Documentation
+See the [wiki](https://github.com/T99/typit/wiki) for full documentation.
 
 ## License
 typit is made available under the GNU General Public License v3.
