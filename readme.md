@@ -1,4 +1,5 @@
 # typit
+
 Typit provides runtime type-checking abilities which are often useful when interacting with and/or building public APIs in which data could potentially be received in a malformed manner.
 
 By using a runtime typechecking system such as typit, a programmer can ensure that the data received by their programs is well-formed, well-defined and correctly typed, thus removing the need to worry about or 'check-on-access' the state and type of each key-value pair you attempt to use.
@@ -6,19 +7,23 @@ By using a runtime typechecking system such as typit, a programmer can ensure th
 ### [Find typit on NPM.](https://www.npmjs.com/package/typit)
 
 ## Table of Contents
+
  - [Installation](#installation)
  - [Basic Usage](#basic-usage)
  - [Documentation](#documentation)
  - [License](#license)
 
 ## Installation
+
 Install from NPM with
 ```
 $ npm install --save typit
 ```
 
 ## Basic Usage
+
 Let's get started checking the types of some variables.
+
 ```typescript
 import { StandardType } from "typit";
 
@@ -82,9 +87,11 @@ clientType.checkConformity({
 ```
 
 ## Documentation
+
 See the [wiki](https://github.com/T99/typit/wiki) for full documentation.
 
 ## License
+
 typit is made available under the GNU General Public License v3.
 
-Copyright (C) 2019 Trevor Sears
+Copyright (C) 2022 Trevor Sears
