@@ -27,7 +27,7 @@ import { TypeInferer } from "./type-inferer";
  * A special type of {@link Error} that contains information about how a given object was deformed from its expected
  * type.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
  * @since v0.6.0
  */

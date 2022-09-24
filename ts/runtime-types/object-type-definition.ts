@@ -25,7 +25,7 @@ import { Type } from "./type";
 /**
  * An interface defining the outline by which complex object types can be typechecked.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
  * @since v0.1.0
  */

@@ -27,7 +27,7 @@ import { Type } from "./type";
 /**
  * Utility methods for {@link ObjectTypeDefinition}s.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
  * @since v0.6.0
  */

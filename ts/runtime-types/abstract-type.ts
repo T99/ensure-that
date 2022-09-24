@@ -25,7 +25,7 @@ import { Type } from "./type";
 /**
  * An interface for classes that check for conformity to a given type at runtime.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v1.0.0
  */

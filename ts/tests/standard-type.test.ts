@@ -26,7 +26,7 @@ import { TEST_VALUES } from "./test-values";
 /**
  * Tests for the Typit standard types.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.4.0
  * @since v0.4.0
  */

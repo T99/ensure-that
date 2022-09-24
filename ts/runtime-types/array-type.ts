@@ -27,7 +27,7 @@ import { Type } from "./type";
 /**
  * A type that represents an Array of a given type.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v0.1.0
  */

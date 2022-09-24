@@ -23,7 +23,7 @@
 /**
  * NPM main class used for exporting this package's contents.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
  * @since v0.2.0
  */

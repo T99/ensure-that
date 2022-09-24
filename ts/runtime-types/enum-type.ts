@@ -25,7 +25,7 @@ import { AbstractType } from "./abstract-type";
 /**
  * A special kind of type that has a predefined/static set of acceptable values.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v0.4.0
  */

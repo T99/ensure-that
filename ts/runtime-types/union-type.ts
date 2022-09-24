@@ -26,7 +26,7 @@ import { Type } from "./type";
 /**
  * A {@link Type} that can be one of a set of Types.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
  * @since v0.4.0
  */

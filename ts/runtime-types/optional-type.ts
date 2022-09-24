@@ -45,7 +45,7 @@ import { CompileTimeType } from "../compile-types/compile-time-type";
  * by this class, or it can be entirely 'non-present' - both of which cases would ensure conformity to this type
  * (given that this type is defined as optional).
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v0.6.0
  */

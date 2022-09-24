@@ -23,7 +23,7 @@
 /**
  * An interface for all Typit types.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.1.0
  * @since v0.1.0
  */

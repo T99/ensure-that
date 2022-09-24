@@ -46,7 +46,7 @@ import { CompileTimeIntersectionType } from "../compile-types/compile-time-inter
  *     "phone": "(123) 456 - 7890"
  * }
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v0.4.0
  */

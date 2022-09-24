@@ -26,7 +26,7 @@ import { Type } from "./runtime-types/type";
 /**
  * A class that infers the Type of it's provided inputs.
  *
- * @author Trevor Sears <trevorsears.main@gmail.com>
+ * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
  * @since v0.6.0
  */
