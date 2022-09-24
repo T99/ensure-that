@@ -42,23 +42,30 @@ export class ObjectType<E = any> extends AbstractType<E> {
 	protected typeName: string;
 	
 	/**
-	 * The {@link ObjectTypeDefinition} that this ObjectType uses to check the conformity of provided inputs.
+	 * The {@link ObjectTypeDefinition} that this ObjectType uses to check the
+	 * conformity of provided inputs.
 	 */
 	protected typeDefinition: ObjectTypeDefinition;
 	
 	/**
-	 * Initializes a new ObjectType with a given {@link ObjectTypeDefinition} and type name.
+	 * Initializes a new ObjectType with a given {@link ObjectTypeDefinition}
+	 * and type name.
 	 *
-	 * The type definition argument is optional, and if not passed will default to an empty type definition, meaning
-	 * that any provided inputs will succeed given that they are objects of any form. Keep in mind that this includes
-	 * arrays.
+	 * The type definition argument is optional, and if not passed will default
+	 * to an empty type definition, meaning that any provided inputs will
+	 * succeed given that they are objects of any form. Keep in mind that this
+	 * includes arrays.
 	 *
-	 * The type name is optional as well and if not provided will default to "object".
+	 * The type name is optional as well and if not provided will default to
+	 * "object".
 	 *
-	 * @param typeDefinition The ObjectTypeDefinition to use to check the conformity of provided inputs.
-	 * @param typeName The name to use for this ObjectType. Defaults to "object".
+	 * @param typeDefinition The ObjectTypeDefinition to use to check the
+	 * conformity of provided inputs.
+	 * @param typeName The name to use for this ObjectType. Defaults to
+	 * "object".
 	 */
-	public constructor(typeDefinition: ObjectTypeDefinition = {}, typeName: string = "object") {
+	public constructor(typeDefinition: ObjectTypeDefinition = {},
+					   typeName: string = "object") {
 		
 		super();
 		
@@ -79,18 +86,23 @@ export class ObjectType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input conforms to this ObjectTypes's {@link ObjectTypeDefinition}.
+	 * Returns true if and only if the provided input conforms to this
+	 * ObjectTypes's {@link ObjectTypeDefinition}.
 	 *
 	 * @param input Any variable to check for conformity to this ObjectType.
-	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
-	 * objects, most outside uses will not pass an argument for this parameter.
-	 * @return true if and only if the provided input conforms to this ObjectTypes's ObjectTypeDefinition.
+	 * @param typeDefinition The type definition to use to check the given
+	 * input. This is used for recursing into objects, most outside uses will
+	 * not pass an argument for this parameter.
+	 * @return true if and only if the provided input conforms to this
+	 * ObjectTypes's ObjectTypeDefinition.
 	 */
-	public checkConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
+	public checkConformity(input: any,
+		typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
 		if (!(typeof input === "object") || (input === null)) return false;
 		
-		let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
+		let iterator: ObjectIterator<Type | ObjectTypeDefinition> =
+			new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
 		
 		for (let typeOrTypeDefinition of iterator) {
 			
@@ -101,11 +113,17 @@ export class ObjectType<E = any> extends AbstractType<E> {
 				
 				let type: Type = typeOrTypeDefinition.value as Type;
 				
-				// If the provided input has a property by the name defined in the type definition...
+				// If the provided input has a property by the name defined in
+				// the type definition...
 				if (input.hasOwnProperty(typePropertyName)) {
 					
-					// If the input's equivalent property does not conform to the type definition of said property...
-					if (!type.checkConformity(input[typePropertyName])) return false;
+					// If the input's equivalent property does not conform to
+					// the type definition of said property...
+					if (!type.checkConformity(input[typePropertyName])) {
+						
+						return false;
+						
+					}
 					
 				// If the value/type was not optionally defined...
 				} else if (!type.isOptional()) return false;
@@ -113,7 +131,12 @@ export class ObjectType<E = any> extends AbstractType<E> {
 			// We're dealing with a ObjectTypeDefinition, not an Type.
 			} else {
 				
-				if (!this.checkConformity(input[typePropertyName], typeOrTypeDefinition.value as ObjectTypeDefinition)) return false;
+				const didRecursivelyConform: boolean = this.checkConformity(
+					input[typePropertyName],
+					typeOrTypeDefinition.value as ObjectTypeDefinition
+				);
+				
+				if (!didRecursivelyConform) return false;
 				
 			}
 			
@@ -124,18 +147,23 @@ export class ObjectType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input conforms to this ObjectTypes's {@link ObjectTypeDefinition} and
-	 * contains no extra properties.
+	 * Returns true if and only if the provided input conforms to this
+	 * ObjectTypes's {@link ObjectTypeDefinition} and contains no extra
+	 * properties.
 	 *
-	 * In other words, the provided input must bi-directionally match the ObjectTypeDefinition.
+	 * In other words, the provided input must bi-directionally match the
+	 * ObjectTypeDefinition.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this ObjectType.
-	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
-	 * objects, most outside uses will not pass an argument for this parameter.
-	 * @return true if and only if the provided input conforms to this ObjectTypes's ObjectTypeDefinition and contains
-	 * no extra values.
+	 * @param input Any variable to exhaustively check for conformity to this
+	 * ObjectType.
+	 * @param typeDefinition The type definition to use to check the given
+	 * input. This is used for recursing into objects, most outside uses will
+	 * not pass an argument for this parameter.
+	 * @return true if and only if the provided input conforms to this
+	 * ObjectTypes's ObjectTypeDefinition and contains no extra values.
 	 */
-	public exhaustivelyCheckConformity(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
+	public exhaustivelyCheckConformity(input: any,
+		typeDefinition: ObjectTypeDefinition = this.typeDefinition): boolean {
 		
 		if (!this.checkConformity(input, typeDefinition)) return false;
 		
@@ -148,7 +176,8 @@ export class ObjectType<E = any> extends AbstractType<E> {
 			
 			if (typeDefinition[inputPropertyName] !== undefined) {
 				
-				if (typeDefinition[inputPropertyName].getTypeName !== undefined) {
+				if (typeDefinition[inputPropertyName].getTypeName !==
+					undefined) {
 					
 					let type: Type = typeDefinition[inputPropertyName] as Type;
 					
@@ -156,7 +185,14 @@ export class ObjectType<E = any> extends AbstractType<E> {
 					
 				} else {
 					
-					if (!this.exhaustivelyCheckConformity(inputPropertyValue, typeDefinition[inputPropertyName] as ObjectTypeDefinition)) return false;
+					const didRecursivelyConform: boolean =
+						this.exhaustivelyCheckConformity(
+							inputPropertyValue,
+							typeDefinition[inputPropertyName] as
+								ObjectTypeDefinition
+						);
+					
+					if (!didRecursivelyConform) return false;
 					
 				}
 				
@@ -169,9 +205,11 @@ export class ObjectType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns the {@link ObjectTypeDefinition} that this ObjectType uses to check passed inputs.
+	 * Returns the {@link ObjectTypeDefinition} that this ObjectType uses to
+	 * check passed inputs.
 	 *
-	 * @return The ObjectTypeDefinition that this ObjectType uses to check passed inputs.
+	 * @return The ObjectTypeDefinition that this ObjectType uses to check
+	 * passed inputs.
 	 */
 	public getObjectTypeDefinition(): ObjectTypeDefinition {
 		
@@ -180,27 +218,35 @@ export class ObjectType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Generates and returns an array of {@link MalformedObjectError}s based on the input given and this ObjectType's
-	 * {@link ObjectTypeDefinition}.
+	 * Generates and returns an array of {@link MalformedObjectError}s based on
+	 * the input given and this ObjectType's {@link ObjectTypeDefinition}.
 	 *
-	 * @param input Any variable for which to generate a list of non-conformities.
-	 * @param typeDefinition The type definition to use to check the given input. This is used for recursing into
-	 * objects, most outside uses will not pass an argument for this parameter.
-	 * @return An array of MalformedObjectErrors containing all of the non-conformities found in the provided
-	 * input.
+	 * @param input Any variable for which to generate a list of
+	 * non-conformities.
+	 * @param typeDefinition The type definition to use to check the given
+	 * input. This is used for recursing into objects, most outside uses will
+	 * not pass an argument for this parameter.
+	 * @return An array of MalformedObjectErrors containing all of the
+	 * non-conformities found in the provided input.
 	 */
-	public listNonConformities(input: any, typeDefinition: ObjectTypeDefinition = this.typeDefinition): MalformedObjectError[] {
+	public listNonConformities(input: any,
+		typeDefinition: ObjectTypeDefinition = this.typeDefinition
+	): MalformedObjectError[] {
 		
 		let nonConformities: MalformedObjectError[] = [];
 		
 		if (!(typeof input === "object") || (input === null)) {
 			
-			// The base object wasn't an object, report on the base object and return.
-			nonConformities.push(new MalformedObjectError([], new ObjectType(), input));
+			// The base object wasn't an object, report on the base object and
+			// return.
+			nonConformities.push(
+				new MalformedObjectError([], new ObjectType(), input)
+			);
 			
 		} else {
 			
-			let iterator: ObjectIterator<Type | ObjectTypeDefinition> = new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
+			let iterator: ObjectIterator<Type | ObjectTypeDefinition> =
+				new ObjectIterator<Type | ObjectTypeDefinition>(typeDefinition);
 			
 			for (let typeOrTypeDefinition of iterator) {
 				
@@ -211,32 +257,52 @@ export class ObjectType<E = any> extends AbstractType<E> {
 					
 					let type: Type = typeOrTypeDefinition.value as Type;
 					
-					// If the provided input has a property by the name defined in the type definition...
+					// If the provided input has a property by the name defined
+					// in the type definition...
 					if (input.hasOwnProperty(typePropertyName)) {
 						
-						// If the input's equivalent property does not conform to the type definition of said property...
+						// If the input's equivalent property does not conform
+						// to the type definition of said property...
 						if (!type.checkConformity(input[typePropertyName])) {
 							
-							nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName]));
+							nonConformities.push(
+								new MalformedObjectError(
+									[typePropertyName],
+									type,
+									input[typePropertyName]
+								)
+							);
 							
 						}
 						
 						// If the value/type was not optionally defined...
 					} else if (!type.isOptional()) {
 						
-						nonConformities.push(new MalformedObjectError([typePropertyName], type, input[typePropertyName], SpecialType.NOT_PRESENT));
+						nonConformities.push(
+							new MalformedObjectError(
+								[typePropertyName],
+								type,
+								input[typePropertyName],
+								SpecialType.NOT_PRESENT
+							)
+						);
 						
 					}
 					
-					// We're dealing with a ObjectTypeDefinition, not an Type.
+				// We're dealing with a ObjectTypeDefinition, not an Type.
 				} else {
 					
 					let nestedNonConformities: MalformedObjectError[] =
-						this.listNonConformities(input[typePropertyName], typeOrTypeDefinition.value as ObjectTypeDefinition);
+						this.listNonConformities(
+							input[typePropertyName],
+							typeOrTypeDefinition.value as ObjectTypeDefinition
+						);
 					
 					for (let nestedNonConformity of nestedNonConformities) {
 						
-						nonConformities.push(nestedNonConformity.prependPath(typePropertyName));
+						nonConformities.push(
+							nestedNonConformity.prependPath(typePropertyName)
+						);
 						
 					}
 					
@@ -250,6 +316,7 @@ export class ObjectType<E = any> extends AbstractType<E> {
 		
 	}
 	
-	// TODO [6/15/19 @ 11:55 PM] - Add an 'exhaustivelyListNonConformities' method.
+	// TODO [6/15/19 @ 11:55 PM] - Add an 'exhaustivelyListNonConformities'
+	//     method.
 	
 }

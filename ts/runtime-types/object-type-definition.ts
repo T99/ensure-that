@@ -23,7 +23,8 @@
 import { Type } from "./type";
 
 /**
- * An interface defining the outline by which complex object types can be typechecked.
+ * An interface defining the outline by which complex object types can be
+ * typechecked.
  *
  * @author Trevor Sears <trevor@trevorsears.com>
  * @version v0.6.0
@@ -32,7 +33,8 @@ import { Type } from "./type";
 export interface ObjectTypeDefinition {
 	
 	/**
-	 * Each property must either be a checkable {@link Type} or a recursing ObjectTypeDefinition.
+	 * Each property must either be a checkable {@link Type} or a recursing
+	 * ObjectTypeDefinition.
 	 */
 	readonly [property: string]: Type | ObjectTypeDefinition;
 

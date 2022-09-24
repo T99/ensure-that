@@ -50,7 +50,8 @@ export class SpecialType<E> extends AbstractType<E> {
 	);
 	
 	/**
-	 * The 'undefined' type, to which (present) explicitly undefined values conform.
+	 * The 'undefined' type, to which (present) explicitly undefined values
+	 * conform.
 	 */
 	public static readonly UNDEFINED: SpecialType<undefined> = new SpecialType(
 		"undefined",
@@ -84,12 +85,15 @@ export class SpecialType<E> extends AbstractType<E> {
 	protected validator: Validator;
 	
 	/**
-	 * Initializes a new SpecialType with the provided name and validator function.
+	 * Initializes a new SpecialType with the provided name and validator
+	 * function.
 	 *
-	 * This method is protected and most likely will not need to be called by any child classes.
+	 * This method is protected and most likely will not need to be called by
+	 * any child classes.
 	 *
 	 * @param name The name of the newly initialized SpecialType.
-	 * @param validator The validator function of the newly initialized SpecialType.
+	 * @param validator The validator function of the newly initialized
+	 * SpecialType.
 	 */
 	protected constructor(name: string, validator: Validator) {
 		
@@ -112,12 +116,12 @@ export class SpecialType<E> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input conforms to the validator function of whichever SpecialType
-	 * is being used.
+	 * Returns true if and only if the provided input conforms to the validator
+	 * function of whichever SpecialType is being used.
 	 *
 	 * @param input Any variable to check for conformity to this SpecialType.
-	 * @return true if and only if the provided input conforms to the validator function of whichever SpecialType
-	 * is being used.
+	 * @return true if and only if the provided input conforms to the validator
+	 * function of whichever SpecialType is being used.
 	 */
 	public checkConformity(input: any): boolean {
 		
@@ -126,12 +130,14 @@ export class SpecialType<E> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Due to the fact that an exhaustive check of SpecialTypes wouldn't do anything different than the normal
-	 * conformity check, this method simply redirects to {@link SpecialType#checkConformity}.
+	 * Due to the fact that an exhaustive check of SpecialTypes wouldn't do
+	 * anything different than the normal conformity check, this method simply
+	 * redirects to {@link SpecialType#checkConformity}.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this SpecialType.
-	 * @return true if and only if the provided input conforms to the validator function of whichever SpecialType
-	 * is being used.
+	 * @param input Any variable to exhaustively check for conformity to this
+	 * SpecialType.
+	 * @return true if and only if the provided input conforms to the validator
+	 * function of whichever SpecialType is being used.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

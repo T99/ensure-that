@@ -75,29 +75,33 @@ export class UnionType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input variable conforms to one or more of the types within this
-	 * UnionType.
+	 * Returns true if and only if the provided input variable conforms to one
+	 * or more of the types within this UnionType.
 	 *
-	 * This method makes no guarantees that the provided input does or does not conform to more than one of the types
-	 * within this UnionType. For such functionality see {@link UnionType#exhaustivelyCheckConformity}.
+	 * This method makes no guarantees that the provided input does or does not
+	 * conform to more than one of the types within this UnionType. For such
+	 * functionality see {@link UnionType#exhaustivelyCheckConformity}.
 	 *
 	 * @param input Any variable to check for conformity to this UnionType.
-	 * @return true if and only if the provided input variable conforms to one or more of the types within this
-	 * UnionType.
+	 * @return true if and only if the provided input variable conforms to one
+	 * or more of the types within this UnionType.
 	 */
 	public checkConformity(input: any): boolean {
 		
-		return this.acceptableTypes.some((type: Type): boolean => type.checkConformity(input));
+		return this.acceptableTypes.some(
+			(type: Type): boolean => type.checkConformity(input)
+		);
 		
 	}
 	
 	/**
-	 * Returns true if and only if the provided input variable conforms to exactly one of the types within this
-	 * UnionType.
+	 * Returns true if and only if the provided input variable conforms to
+	 * exactly one of the types within this UnionType.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this UnionType.
-	 * @return true if and only if the provided input variable conforms to exactly one of the types within this
+	 * @param input Any variable to exhaustively check for conformity to this
 	 * UnionType.
+	 * @return true if and only if the provided input variable conforms to
+	 * exactly one of the types within this UnionType.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

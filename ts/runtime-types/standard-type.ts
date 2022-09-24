@@ -68,12 +68,15 @@ export class StandardType<E> extends AbstractType<E> {
 	protected validator: Validator;
 	
 	/**
-	 * Initializes a new StandardType with the provided name and validator function.
+	 * Initializes a new StandardType with the provided name and validator
+	 * function.
 	 *
-	 * This method is protected and most likely will not need to be called by any child classes.
+	 * This method is protected and most likely will not need to be called by
+	 * any child classes.
 	 *
 	 * @param name The name of the newly initialized StandardType.
-	 * @param validator The validator function of the newly initialized StandardType.
+	 * @param validator The validator function of the newly initialized
+	 * StandardType.
 	 */
 	protected constructor(name: string, validator: Validator) {
 	
@@ -96,12 +99,12 @@ export class StandardType<E> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input conforms to the validator function of whichever StandardType
-	 * is being used.
+	 * Returns true if and only if the provided input conforms to the validator
+	 * function of whichever StandardType is being used.
 	 *
 	 * @param input Any variable to check for conformity to this StandardType.
-	 * @return true if and only if the provided input conforms to the validator function of whichever StandardType
-	 * is being used.
+	 * @return true if and only if the provided input conforms to the validator
+	 * function of whichever StandardType is being used.
 	 */
 	public checkConformity(input: any): boolean {
 		
@@ -110,12 +113,14 @@ export class StandardType<E> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Due to the fact that an exhaustive check of StandardTypes wouldn't do anything different than the normal
-	 * conformity check, this method simply redirects to {@link StandardType#checkConformity}.
+	 * Due to the fact that an exhaustive check of StandardTypes wouldn't do
+	 * anything different than the normal conformity check, this method simply
+	 * redirects to {@link StandardType#checkConformity}.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this StandardType.
-	 * @return true if and only if the provided input conforms to the validator function of whichever StandardType
-	 * is being used.
+	 * @param input Any variable to exhaustively check for conformity to this
+	 * StandardType.
+	 * @return true if and only if the provided input conforms to the validator
+	 * function of whichever StandardType is being used.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

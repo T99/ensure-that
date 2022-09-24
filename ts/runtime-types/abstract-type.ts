@@ -23,7 +23,8 @@
 import { Type } from "./type";
 
 /**
- * An interface for classes that check for conformity to a given type at runtime.
+ * An interface for classes that check for conformity to a given type at
+ * runtime.
  *
  * @author Trevor Sears <trevor@trevorsears.com>
  * @version v1.0.0
@@ -51,7 +52,9 @@ export abstract class AbstractType<E = any> implements Type {
 	
 	public exhaustivelyCheckConformityOfAll(...input: any[]): boolean {
 		
-		return input.every((item: any): boolean => this.exhaustivelyCheckConformity(item));
+		return input.every(
+			(item: any): boolean => this.exhaustivelyCheckConformity(item)
+		);
 		
 	}
 	
@@ -60,8 +63,14 @@ export abstract class AbstractType<E = any> implements Type {
 		if (this.checkConformity(input)) return input as E;
 		else {
 			
-			throw new TypeError("ERR | Attempted to sanitize content that did not match the desired type signature. " +
-				"Type of " + input.toString() + "was not '" + this.getTypeName() + "'");
+			const stringifiedInput: string =
+				"toString" in input ? input.toString() : input as string;
+			
+			throw new TypeError(
+				"ERR | Attempted to sanitize content that did not match the " +
+				"desired type signature. Type of " + stringifiedInput +
+				" was not '" + this.getTypeName() + "'"
+			);
 			
 		}
 		

@@ -53,11 +53,15 @@ export {
 
 // Object Type Definition Files
 export { ObjectTypeDefinition } from "./runtime-types/object-type-definition";
-export { ObjectTypeDefinitionUtil } from "./runtime-types/object-type-definition-util";
+export {
+	ObjectTypeDefinitionUtil
+} from "./runtime-types/object-type-definition-util";
 
 // Compile Time Types
 export { CompileTimeType } from "./compile-types/compile-time-type";
-export { CompileTimeIntersectionType } from "./compile-types/compile-time-intersection-type";
+export {
+	CompileTimeIntersectionType
+} from "./compile-types/compile-time-intersection-type";
 
 // Errors
 export { MalformedObjectError } from "./malformed-object-error";

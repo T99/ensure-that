@@ -21,7 +21,8 @@
  */
 
 // DOC-ME [2/25/20 @ 4:34 PM] - Documentation required!
-type InternalCompileTimeIntersectionType<T0 extends {} = {}, T1 extends {} = {}> = {
+type InternalCompileTimeIntersectionType<T0 extends {} = {},
+                                         T1 extends {} = {}> = {
 	
 	[K in keyof (T0 & T1)]: K extends keyof T0 ?
 		(K extends keyof T1 ?
@@ -51,8 +52,8 @@ export type CompileTimeIntersectionType<
 						InternalCompileTimeIntersectionType<
 							InternalCompileTimeIntersectionType<
 								InternalCompileTimeIntersectionType<
-									InternalCompileTimeIntersectionType<T0, T1>, T2
-									>, T3
+									InternalCompileTimeIntersectionType<T0, T1>,
+									T2 >, T3
 								>, T4
 							>, T5
 						>, T6

@@ -34,7 +34,8 @@ import { Type } from "./type";
 export class ArrayType<E = any> extends AbstractType<E[]> {
 	
 	/**
-	 * The type to which the members of the arrays passed to this ArrayType should conform.
+	 * The type to which the members of the arrays passed to this ArrayType
+	 * should conform.
 	 *
 	 * In other words, this is the type of the members of the array.
 	 */
@@ -43,8 +44,10 @@ export class ArrayType<E = any> extends AbstractType<E[]> {
 	/**
 	 * Initializes a new ArrayType with a given member type.
 	 *
-	 * The `arrayType` parameter defaults to `SpecialType.ANY` so that if no arguments are passed to this constructor,
-	 * inputs that are checked for conformity by the constructed type will pass so long as they are actually arrays.
+	 * The `arrayType` parameter defaults to `SpecialType.ANY` so that if no
+	 * arguments are passed to this constructor, inputs that are checked for
+	 * conformity by the constructed type will pass so long as they are actually
+	 * arrays.
 	 *
 	 * @param arrayType The type of the members of the array.
 	 */
@@ -68,12 +71,12 @@ export class ArrayType<E = any> extends AbstractType<E[]> {
 	}
 	
 	/**
-	 * Returns true if and only if the provided input is an array, and the array's contents conform to the given type of
-	 * this ArrayType.
+	 * Returns true if and only if the provided input is an array, and the
+	 * array's contents conform to the given type of this ArrayType.
 	 *
 	 * @param input Any variable to check for conformity to this ArrayType.
-	 * @return true if and only if the provided input is an array, and the array's contents conform to the given type of
-	 * this ArrayType.
+	 * @return true if and only if the provided input is an array, and the
+	 * array's contents conform to the given type of this ArrayType.
 	 */
 	public checkConformity(input: any): boolean {
 		
@@ -93,12 +96,14 @@ export class ArrayType<E = any> extends AbstractType<E[]> {
 	}
 	
 	/**
-	 * Due to the fact that an exhaustive check of an array wouldn't do anything different than the normal conformity
-	 * check, this method simply redirects to {@link ArrayType#checkConformity}.
+	 * Due to the fact that an exhaustive check of an array wouldn't do anything
+	 * different than the normal conformity check, this method simply redirects
+	 * to {@link ArrayType#checkConformity}.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this ArrayType.
-	 * @return true if and only if the provided input is an array, and the array's contents conform to the given type of
-	 * this ArrayType.
+	 * @param input Any variable to exhaustively check for conformity to this
+	 * ArrayType.
+	 * @return true if and only if the provided input is an array, and the
+	 * array's contents conform to the given type of this ArrayType.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		

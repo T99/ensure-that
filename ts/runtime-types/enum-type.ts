@@ -37,21 +37,23 @@ export class EnumType<E = any> extends AbstractType<E> {
 	protected typeName: string;
 	
 	/**
-	 * An array of acceptable values for which any conforming instances of this type should hold one of the items in
-	 * this array as a value.
+	 * An array of acceptable values for which any conforming instances of this
+	 * type should hold one of the items in this array as a value.
 	 *
-	 * In other words, this EnumType's conformity check will pass so long as the value of any inputs passed to said
-	 * method are contained in this array.
+	 * In other words, this EnumType's conformity check will pass so long as the
+	 * value of any inputs passed to said method are contained in this array.
 	 */
 	protected acceptableValues: E[];
 	
 	/**
-	 * Initializes a new EnumType with the provided list of acceptable values and an optional type name.
+	 * Initializes a new EnumType with the provided list of acceptable values
+	 * and an optional type name.
 	 *
-	 * If a type name is not provided, the type name will be set simply to "Enum".
+	 * If a type name is not provided, the type name will be set simply to
+	 * "Enum".
 	 *
-	 * @param acceptableValues An array of acceptable values that conforming instances of this type should take on as
-	 * values.
+	 * @param acceptableValues An array of acceptable values that conforming
+	 * instances of this type should take on as values.
 	 * @param typeName An optional name for this EnumType.
 	 */
 	public constructor(acceptableValues: E[], typeName?: string) {
@@ -65,8 +67,10 @@ export class EnumType<E = any> extends AbstractType<E> {
 			
 			this.typeName = "enum";
 			
-			// TODO [6/14/19 @ 2:50 PM] - Attempt to derive acceptableValue type and iterate over getTypeName or raw value.
-			// TODO [6/15/19 @ 7:29 PM] - Remember to change the doc-comment for the constructor once this logic is changed.
+			// TODO [6/14/19 @ 2:50 PM] - Attempt to derive acceptableValue type
+			//     and iterate over getTypeName or raw value.
+			// TODO [6/15/19 @ 7:29 PM] - Remember to change the doc-comment for
+			//     the constructor once this logic is changed.
 			
 		}
 	
@@ -84,22 +88,29 @@ export class EnumType<E = any> extends AbstractType<E> {
 	}
 	
 	/**
-	 * Returns true if and only if the input value is one of the acceptable values of this EnumType.
+	 * Returns true if and only if the input value is one of the acceptable
+	 * values of this EnumType.
 	 *
 	 * @param input Any variable to check for conformity to this EnumType.
-	 * @return true if and only if the input value is one of the acceptable values of this EnumType.
+	 * @return true if and only if the input value is one of the acceptable
+	 * values of this EnumType.
 	 */
 	public checkConformity(input: any): boolean {
 		
-		return this.acceptableValues.some((value: E): boolean => (value === input));
+		return this.acceptableValues.some(
+			(value: E): boolean => value === input
+		);
 		
 	}
 	
 	/**
-	 * Returns true if and only if the input value is equal to exactly one of the acceptable values of this EnumType.
+	 * Returns true if and only if the input value is equal to exactly one of
+	 * the acceptable values of this EnumType.
 	 *
-	 * @param input Any variable to exhaustively check for conformity to this EnumType.
-	 * @return true if and only if the input value is equal to exactly one of the acceptable values of this EnumType.
+	 * @param {any} input Any variable to exhaustively check for conformity to
+	 * this EnumType.
+	 * @return {boolean} true if and only if the input value is equal to exactly
+	 * one of the acceptable values of this EnumType.
 	 */
 	public exhaustivelyCheckConformity(input: any): boolean {
 		
